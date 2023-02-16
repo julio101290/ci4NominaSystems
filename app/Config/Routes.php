@@ -107,6 +107,33 @@ $routes->group('admin', function ($routes) {
     $routes->post('costcenter/save', 'CostcenterController::save');
     $routes->post('costcenter/getCostcenter', 'CostcenterController::getCostcenter');
 
+    $routes->resource('additionalfeaturespeople', [
+        'filter' => 'permission:additionalfeaturespeople-permission',
+        'controller' => 'additionalfeaturespeopleController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('additionalfeaturespeople/save', 'AdditionalfeaturespeopleController::save');
+    $routes->post('additionalfeaturespeople/getAdditionalfeaturespeople', 'AdditionalfeaturespeopleController::getAdditionalfeaturespeople');
+
+    $routes->resource('turns', [
+        'filter' => 'permission:turns-permission',
+        'controller' => 'turnsController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('turns/save', 'TurnsController::save');
+    $routes->post('turns/getTurns', 'TurnsController::getTurns');
+
+    $routes->resource('perceptionsanddeductions', [
+        'filter' => 'permission:perceptionsanddeductions-permission',
+        'controller' => 'perceptionsanddeductionsController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('perceptionsanddeductions/save', 'PerceptionsanddeductionsController::save');
+    $routes->post('perceptionsanddeductions/getPerceptionsanddeductions', 'PerceptionsanddeductionsController::getPerceptionsanddeductions');
+
     $routes->get('generateCRUD/(:any)', 'AutoCrudController::index/$1');
 });
 
