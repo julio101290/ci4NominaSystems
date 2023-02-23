@@ -12,7 +12,7 @@
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#generales" type="button" role="tab" aria-controls="home" aria-selected="true">Generales</button>
+                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#persinalDate" type="button" role="tab" aria-controls="home" aria-selected="true">Generales</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#datosFacturacion" type="button" role="tab" aria-controls="profile" aria-selected="false">Facturacion</button>

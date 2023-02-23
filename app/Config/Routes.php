@@ -135,6 +135,24 @@ $routes->group('admin', function ($routes) {
     $routes->post('perceptionsanddeductions/getPerceptionsanddeductions', 'PerceptionsanddeductionsController::getPerceptionsanddeductions');
 
     $routes->get('generateCRUD/(:any)', 'AutoCrudController::index/$1');
+
+    $routes->resource('employees', [
+        'filter' => 'permission:employees-permission',
+        'controller' => 'employeesController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('employees/save', 'EmployeesController::save');
+    $routes->post('employees/getEmployees', 'EmployeesController::getEmployees');
+
+    $routes->resource('banks', [
+        'filter' => 'permission:banks-permission',
+        'controller' => 'banksController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('banks/save', 'BanksController::save');
+    $routes->post('banks/getBanks', 'BanksController::getBanks');
 });
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {

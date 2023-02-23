@@ -30,6 +30,7 @@ class Database extends Config
      *
      * @var array
      */
+  
     public $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
@@ -50,6 +51,33 @@ class Database extends Config
         'port'     => 3306,
     ];
 
+    
+    /*
+    public $default = [
+		'DSN'      => 'pgsql:host=localhost;port=5432;dbname=ci_ajax_pagination;user=user;password=password',
+		//'DSN'      => '',
+		'hostname' => 'localhost',
+		'username' => 'postgres',
+		'password' => 'postgres',
+		'database' => 'nomina2023',
+		'DBDriver' => 'Postgre',
+		'DBPrefix' => '',
+		'pConnect' => false,
+		'DBDebug'  => (ENVIRONMENT !== 'production'),
+		'cacheOn'  => false,
+		'cacheDir' => '',
+		
+		'charset'  => 'utf8',
+		'DBCollat' => 'utf8_general_ci',
+		'swapPre'  => '',
+		'encrypt'  => false,
+		'compress' => false,
+		'strictOn' => false,
+		'failover' => [],
+		'port'     => 5432,
+	];
+                
+                */
     /**
      * This database connection is used when
      * running PHPUnit database tests.

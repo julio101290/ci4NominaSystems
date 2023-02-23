@@ -25,7 +25,7 @@ class AutoCrudController extends BaseController {
         $this->generateView($table);
         $this->generateViewModal($table);
         $this->generateLanguage($table);
-        $this->generateMigration($table);
+        //$this->generateMigration($table);
         //$this->generateLanguageES($table);
 
         $tableUpCase = ucfirst($table);
@@ -401,6 +401,7 @@ class AutoCrudController extends BaseController {
          var table{$tableUpCase} = $('#table{$tableUpCase}').DataTable({
              processing: true,
              serverSide: true,
+             responsive: true,
              autoWidth: false,
              order: [[1, 'asc']],
 

@@ -12,9 +12,24 @@ $additionalfeaturespeople["title"] = "Características adicionales de gestión d
 $additionalfeaturespeople["subtitle"] = "Características adicionales lista de personas";
 $additionalfeaturespeople["fields"]["name"] = "Nombre";
 $additionalfeaturespeople["fields"]["format"] = "Formato";
+
+$additionalfeaturespeople["fields"]["formatOptionChar"] = "Caracter";
+$additionalfeaturespeople["fields"]["formatOptionInteger"] = "Entero";
+$additionalfeaturespeople["fields"]["formatOptionLogic"] = "Lógico";
+$additionalfeaturespeople["fields"]["formatOptionDate"] = "Fecha";
+$additionalfeaturespeople["fields"]["formatOptionNumber"] = "Número";
+$additionalfeaturespeople["fields"]["formatOptionMemo"] = "Memo";
+
 $additionalfeaturespeople["fields"]["type"] = "Tipo";
+$additionalfeaturespeople["fields"]["typeOptionOpen"] = "Abierto";
+$additionalfeaturespeople["fields"]["typeOptionClosed"] = "Cerrado";
+
 $additionalfeaturespeople["fields"]["cid"] = "Cid";
 $additionalfeaturespeople["fields"]["code"] = "Código";
+
+$additionalfeaturespeople["fields"]["minimunValue"] = "Valor Maximo";
+$additionalfeaturespeople["fields"]["maximunValue"] = "Valor Minimo";
+
 $additionalfeaturespeople["fields"]["created_at"] = "Creado en";
 $additionalfeaturespeople["fields"]["updated_at"] = "Actualizado_en";
 $additionalfeaturespeople["fields"]["deleted_at"] = "Eliminado_en";

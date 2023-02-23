@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="tableBranchoffices" class="table table-striped table-hover va-middle tableBranchoffices">
+                    <table id="tableBranchoffices" class="table table-striped table-hover  va-middle tableBranchoffices">
                         <thead>
                             <tr>
 
@@ -76,6 +76,7 @@
         processing: true,
         serverSide: true,
         autoWidth: false,
+        responsive: true,
         order: [[1, 'asc']],
 
         ajax: {

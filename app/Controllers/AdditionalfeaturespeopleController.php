@@ -28,7 +28,7 @@
 
 
 
-             $datos = $this->additionalfeaturespeople->select('id,name,format,type,cid,code,created_at,updated_at,deleted_at')->where('deleted_at', null);
+             $datos = $this->additionalfeaturespeople->select('id,name,format,type,cid,code,created_at,updated_at,deleted_at,minimunValue,maximunValue')->where('deleted_at', null);
 
              return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
          }

@@ -12,9 +12,24 @@ $additionalfeaturespeople["title"] = "Additional features people management";
 $additionalfeaturespeople["subtitle"] = "Additional features people list";
 $additionalfeaturespeople["fields"]["name"] = "Name";
 $additionalfeaturespeople["fields"]["format"] = "Format";
+
+$additionalfeaturespeople["fields"]["formatOptionChar"] = "Character";
+$additionalfeaturespeople["fields"]["formatOptionInteger"] = "Integer";
+$additionalfeaturespeople["fields"]["formatOptionLogic"] = "Logic";
+$additionalfeaturespeople["fields"]["formatOptionDate"] = "Date";
+$additionalfeaturespeople["fields"]["formatOptionMemo"] = "Memo";
+$additionalfeaturespeople["fields"]["formatOptionNumber"] = "Number";
+
 $additionalfeaturespeople["fields"]["type"] = "Type";
+$additionalfeaturespeople["fields"]["typeOptionOpen"] = "Open";
+$additionalfeaturespeople["fields"]["typeOptionClosed"] = "Closed";
+
 $additionalfeaturespeople["fields"]["cid"] = "Cid";
 $additionalfeaturespeople["fields"]["code"] = "Code";
+
+$additionalfeaturespeople["fields"]["minimunValue"] = "Minimun Value";
+$additionalfeaturespeople["fields"]["maximunValue"] = "Maximun Value";
+
 $additionalfeaturespeople["fields"]["created_at"] = "Created_at";
 $additionalfeaturespeople["fields"]["updated_at"] = "Updated_at";
 $additionalfeaturespeople["fields"]["deleted_at"] = "Deleted_at";
