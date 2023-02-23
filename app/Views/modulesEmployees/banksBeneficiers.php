@@ -30,7 +30,7 @@
 
             </select>
 
-           
+
         </div>
     </div>
 </div>
@@ -63,8 +63,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            
-            
+
+
             <select class="form-control select" name="relationBeneficiary2" id="relationBeneficiary2" style="width: 80%;">
 
                 <option value="Nothing"><?= lang('employees.fields.relationBeneficiaryNothing') ?></option>
@@ -76,7 +76,7 @@
 
             </select>
 
-           
+
         </div>
     </div>
 </div>
@@ -91,6 +91,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="form-group row">
     <label for="bank" class="col-sm-2 col-form-label"><?= lang('employees.fields.bank') ?></label>
     <div class="col-sm-10">
@@ -98,10 +100,27 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            <input type="text" name="bank" id="bank" class="form-control <?= session('error.bank') ? 'is-invalid' : '' ?>" value="<?= old('bank') ?>" placeholder="<?= lang('employees.fields.bank') ?>" autocomplete="off">
+            
+            <select class="form-control select" name="bank" id="bank" style="width: 80%;">
+
+                <option value="0"><?= lang('employees.fields.turnSelect') ?></option>
+                <?php
+                foreach ($banks as $key => $value) {
+
+                    echo '<option value="' . $value->id . '">' . $value->id . ' - ' . $value->name . '</option>';
+                }
+                ?>
+
+               
+
+            </select>
+            
+          
         </div>
     </div>
 </div>
+
+
 <div class="form-group row">
     <label for="bankAccount" class="col-sm-2 col-form-label"><?= lang('employees.fields.bankAccount') ?></label>
     <div class="col-sm-10">

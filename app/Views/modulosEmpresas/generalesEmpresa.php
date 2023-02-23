@@ -9,7 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-              <input type="hidden" name="idEmpresa" id="idEmpresa" value="0">
+            <input type="hidden" name="idEmpresa" id="idEmpresa" value="0">
             <input type="text" name="nombre" id="nombre" class="form-control <?= session('error.nombre') ? 'is-invalid' : '' ?>" value="<?= old('nombre') ?>" placeholder="<?= lang('empresas.fields.nombre') ?>" autocomplete="off">
         </div>
     </div>

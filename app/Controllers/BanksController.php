@@ -32,7 +32,10 @@
 
              return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
          }
+         
+         $banksSat = $this->catalogosSAT->bancos()->searchByField("texto", "%%", 1000);
 
+         $titulos["banksSat"] = $banksSat;
          $titulos["title"] = lang('banks.title');
          $titulos["subtitle"] = lang('banks.subtitle');
 
