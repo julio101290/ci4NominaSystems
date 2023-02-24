@@ -38,7 +38,6 @@
                                 <th><?= lang('perceptionsanddeductions.fields.nameAbrev') ?></th>
                                 <th><?= lang('perceptionsanddeductions.fields.type') ?></th>
                                 <th><?= lang('perceptionsanddeductions.fields.Area') ?></th>
-                                <th><?= lang('perceptionsanddeductions.fields.SATConcept') ?></th>
                                 <th><?= lang('perceptionsanddeductions.fields.calc') ?></th>
                                 <th><?= lang('perceptionsanddeductions.fields.orden') ?></th>
                                 <th><?= lang('perceptionsanddeductions.fields.payType') ?></th>
@@ -86,9 +85,9 @@
         },
         columnDefs: [{
                 orderable: false,
-                targets: [15],
+                targets: [14],
                 searchable: false,
-                targets: [15]
+                targets: [14]
 
             }],
         columns: [{
@@ -115,9 +114,7 @@
                 'data': 'Area'
             },
 
-            {
-                'data': 'SATConcept'
-            },
+    
 
             {
                 'data': 'calc'
@@ -181,6 +178,9 @@
         var payType = $("#payType").val();
         var ordinary = $("#ordinary").val();
         var otherPay = $("#otherPay").val();
+        var SATConceptPerceptions = $("#SATConceptPerceptions").val();
+
+
 
         $("#btnSavePerceptionsanddeductions").attr("disabled", true);
 
@@ -197,7 +197,7 @@
         datos.append("payType", payType);
         datos.append("ordinary", ordinary);
         datos.append("otherPay", otherPay);
-
+        datos.append("SATConceptPerceptions", SATConceptPerceptions);
 
         $.ajax({
 
@@ -273,14 +273,22 @@
                 $("#name").val(respuesta["name"]);
                 $("#nameAbrev").val(respuesta["nameAbrev"]);
                 $("#type").val(respuesta["type"]);
+                $("#type").trigger("change");
                 $("#Area").val(respuesta["Area"]);
+                $("#Area").trigger("change");
                 $("#SATConcept").val(respuesta["SATConcept"]);
+                $("#SATConcept").trigger("change");
+                $("#SATConceptPerceptions").val(respuesta["SATConceptPerceptions"]);
+                $("#SATConceptPerceptions").trigger("change");
                 $("#calc").val(respuesta["calc"]);
+                $("#calc").trigger("change");
                 $("#orden").val(respuesta["orden"]);
                 $("#payType").val(respuesta["payType"]);
+                $("#payType").trigger("change");
                 $("#ordinary").val(respuesta["ordinary"]);
+                $("#ordinary").trigger("change");
                 $("#otherPay").val(respuesta["otherPay"]);
-
+                $("#otherPay").trigger("change");
 
             }
 
@@ -328,6 +336,15 @@
                 })
     })
 
+
+    $("#type").select2();
+    $("#calc").select2();
+    $("#Area").select2();
+    $("#payType").select2();
+    $("#ordinary").select2();
+    $("#otherPay").select2();
+    $("#SATConcept").select2();
+    $("#SATConceptPerceptions").select2();
 
 
 

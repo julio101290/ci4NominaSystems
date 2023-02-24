@@ -9,13 +9,46 @@ $perceptionsanddeductions["fields"]["code"] = "Code";
 $perceptionsanddeductions["fields"]["name"] = "Name";
 $perceptionsanddeductions["fields"]["nameAbrev"] = "NameAbrev";
 $perceptionsanddeductions["fields"]["type"] = "Type";
+
+$perceptionsanddeductions["fields"]["typePerception"] = "Perception";
+$perceptionsanddeductions["fields"]["typeDeduction"] = "Deduction";
+
+
+
 $perceptionsanddeductions["fields"]["Area"] = "Area";
+$perceptionsanddeductions["fields"]["areaNotVisible"] = "Not Visible";
+$perceptionsanddeductions["fields"]["areaLiquidation"] = "Liquidation";
+$perceptionsanddeductions["fields"]["areaVisible"] = "Visible";
+
 $perceptionsanddeductions["fields"]["SATConcept"] = "SATConcept";
+
+$perceptionsanddeductions["fields"]["SATConceptPerception"] = "Concepts Perceptions SAT";
+$perceptionsanddeductions["fields"]["selectSATConceptPerception"] = "Select Perception SAT";
+
 $perceptionsanddeductions["fields"]["calc"] = "Calc";
+
+$perceptionsanddeductions["fields"]["calcNothing"] = "Nothing";
+$perceptionsanddeductions["fields"]["calcAutomatic"] = "Automatic";
+$perceptionsanddeductions["fields"]["calcAcumulative"] = "Acumulative";
+$perceptionsanddeductions["fields"]["calcRepetitive"] = "Repetitive";
+
 $perceptionsanddeductions["fields"]["orden"] = "Orden";
+
 $perceptionsanddeductions["fields"]["payType"] = "PayType";
+$perceptionsanddeductions["fields"]["payTypeCash"] = "Cash";
+$perceptionsanddeductions["fields"]["payTypeCard"] = "Card";
+$perceptionsanddeductions["fields"]["payTypeSpecie"] = "Specie";
+$perceptionsanddeductions["fields"]["payTypeLiquidation"] = "Liquidation";
+
+
 $perceptionsanddeductions["fields"]["ordinary"] = "Ordinary";
+$perceptionsanddeductions["fields"]["ordinaryYes"] = "Yes";
+$perceptionsanddeductions["fields"]["ordinaryNo"] = "No";
+
+
 $perceptionsanddeductions["fields"]["otherPay"] = "OtherPay";
+$perceptionsanddeductions["fields"]["selectOtherPays"] = "Select other pays";
+
 $perceptionsanddeductions["fields"]["created_at"] = "Created_at";
 $perceptionsanddeductions["fields"]["updated_at"] = "Updated_at";
 $perceptionsanddeductions["fields"]["deleted_at"] = "Deleted_at";

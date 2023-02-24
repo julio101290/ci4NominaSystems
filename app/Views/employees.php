@@ -583,13 +583,14 @@
     })
 
 
-$("#civilStatus").select2();
-$("#sex").select2();
-$("#scholarship").select2();
-$("#relationBeneficiary2").select2();
-$("#relationBeneficiary").select2();
-$("#turn").select2();
-$("#bank").select2();
+    $("#civilStatus").select2();
+    $("#sex").select2();
+    $("#scholarship").select2();
+    $("#relationBeneficiary2").select2();
+    $("#relationBeneficiary").select2();
+    $("#turn").select2();
+    $("#bank").select2();
+    
 
 </script>
 <?= $this->endSection() ?>

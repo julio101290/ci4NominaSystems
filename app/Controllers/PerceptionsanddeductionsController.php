@@ -14,6 +14,7 @@
      protected $log;
      protected $perceptionsanddeductions;
 
+
      public function __construct() {
          $this->perceptionsanddeductions = new PerceptionsanddeductionsModel();
          $this->log = new LogModel();
@@ -32,7 +33,15 @@
 
              return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
          }
-
+         
+         
+         $otrosPagosSAT = $this->catalogosSAT->otrosTipoPago()->searchByField("texto", "%%", 1000);
+         $conceptosSATDeducciones  = $this->catalogosSAT->deducciones()->searchByField("texto", "%%", 1000);
+         $conceptosSATPercepciones  = $this->catalogosSAT->percepciones()->searchByField("texto", "%%", 1000);
+   
+         $titulos["deducciones"] = $conceptosSATDeducciones;
+         $titulos["percepciones"] = $conceptosSATPercepciones;
+         $titulos["otrosPagoSAT"] = $otrosPagosSAT;
          $titulos["title"] = lang('perceptionsanddeductions.title');
          $titulos["subtitle"] = lang('perceptionsanddeductions.subtitle');
 

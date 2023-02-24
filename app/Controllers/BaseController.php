@@ -61,5 +61,6 @@ abstract class BaseController extends Controller
         $satCatalogos = $factory->catalogosFromDsn($dsn);
         $this->catalogosSAT = $satCatalogos;
         
+        
     }
 }
