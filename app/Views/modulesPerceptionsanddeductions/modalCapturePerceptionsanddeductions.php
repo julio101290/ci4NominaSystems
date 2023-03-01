@@ -183,7 +183,7 @@
                                 <select class="form-control select" name="payType" id="payType" style="width: 80%;">
                                     
                                     <option value="0"><?= lang('perceptionsanddeductions.fields.selectPayType') ?></option>
-                                    <option value="cash" selected><?= lang('perceptionsanddeductions.fields.payTypeCash') ?></option>
+                                    <option value="cash" ><?= lang('perceptionsanddeductions.fields.payTypeCash') ?></option>
                                     <option value="card"><?= lang('perceptionsanddeductions.fields.payTypeCard') ?></option>
                                     <option value="specie"><?= lang('perceptionsanddeductions.fields.payTypeSpecie') ?></option>
                                     <option value="liquidation"><?= lang('perceptionsanddeductions.fields.payTypeLiquidation') ?></option>
@@ -261,7 +261,16 @@
         $("#idPerceptionsanddeductions").val("0");
 
         $("#btnSavePerceptionsanddeductions").removeAttr("disabled");
-
+        
+        $("#type").trigger("change");
+        $("#Area").trigger("change");
+        $("#SATConcept").trigger("change"); 
+        $("#SATConceptPerceptions").trigger("change");
+        $("#calc").trigger("change");
+        $("#payType").trigger("change");
+        $("#ordinary").trigger("change");
+        $("#otherPay").trigger("change");
+        
     });
 
     /* 

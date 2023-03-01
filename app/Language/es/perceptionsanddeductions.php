@@ -49,7 +49,7 @@ $perceptionsanddeductions["fields"]["orden"] = "orden";
 
 
 $perceptionsanddeductions["fields"]["payType"] = "Tipo Pago";
-$perceptionsanddeductions["fields"]["selectTpayType"] = "Seleccione tipo pago";
+$perceptionsanddeductions["fields"]["selectPayType"] = "Seleccione tipo pago";
 $perceptionsanddeductions["fields"]["payTypeCash"] = "Efectivo";
 $perceptionsanddeductions["fields"]["payTypeCard"] = "Tarjeta";
 $perceptionsanddeductions["fields"]["payTypeSpecie"] = "Especie";
