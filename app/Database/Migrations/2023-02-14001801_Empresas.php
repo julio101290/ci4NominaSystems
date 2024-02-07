@@ -10,6 +10,7 @@ class Empresas extends Migration {
         // Empresas
         $this->forge->addField([
             'id' => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'idEmpresa' => ['type' => 'int',  'unsigned' => true, ],
             'nombre' => ['type' => 'varchar', 'constraint' => 500, 'null' => false],
             'direccion' => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
             'rfc' => ['type' => 'varchar', 'constraint' => 14, 'null' => false],
@@ -25,6 +26,7 @@ class Empresas extends Migration {
             'razonSocial' => ['type' => 'varchar', 'constraint' => 68, 'null' => true],
             'codigoPostal' => ['type' => 'varchar', 'constraint' => 68, 'null' => true],
             'CURP' => ['type' => 'varchar', 'constraint' => 68, 'null' => true],
+            'facturacionRD' => ['type' => 'varchar', 'constraint' => 4, 'null' => true],
             'created_at' => ['type' => 'datetime', 'null' => true],
             'updated_at' => ['type' => 'datetime', 'null' => true],
             'deleted_at' => ['type' => 'datetime', 'null' => true],

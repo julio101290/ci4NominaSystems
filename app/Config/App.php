@@ -466,4 +466,6 @@ class App extends BaseConfig
      * @var bool
      */
     public $CSPEnabled = false;
+
+    public array $allowedHostnames = [];
 }

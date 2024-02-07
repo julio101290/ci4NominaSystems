@@ -1,4 +1,3 @@
-             
 <p>
 <h3>Imagenes</h3>
 
@@ -10,7 +9,7 @@
 
     <p class="help-block"><?= lang("empresas.imagenesPesoMaximo") ?></p>
 
-    <img src="<?= base_url("images/logo/anonymous.png") ?>" class="img-thumbnail previsualizarLogo" width="100px">
+    <img src="<?= base_url("images/logo/default.png") ?>" class="img-thumbnail previsualizarLogo" width="100px">
 
     <input type="hidden" name="logoActual" id="logoActual">
 

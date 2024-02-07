@@ -12,7 +12,7 @@
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#persinalDate" type="button" role="tab" aria-controls="home" aria-selected="true">Generales</button>
+                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#generales" type="button" role="tab" aria-controls="home" aria-selected="true">Generales</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#datosFacturacion" type="button" role="tab" aria-controls="profile" aria-selected="false">Facturacion</button>
@@ -20,8 +20,12 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Logos / Imagenes</button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="emailsetting-tab" data-toggle="tab" data-target="#emailsettings" type="button" role="tab" aria-controls="emailSettings" aria-selected="false">Configuración de Correo</button>
+                    </li>
+
                 </ul>
-                <form id="form-empresa" class="form-horizontal">  
+                <form id="form-empresa" class="form-horizontal">
                     <div class="tab-content" id="myTabContent">
 
 
@@ -37,10 +41,19 @@
 
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            
+
                             <?= $this->include('modulosEmpresas/logosEmpresa') ?>
-                        
+
                         </div>
+
+                        <div class="tab-pane fade" id="emailsettings" role="tabpanel" aria-labelledby="contact-tab">
+
+                            <?= $this->include('modulosEmpresas/configuracionCorreo') ?>
+
+                        </div>
+
+                        
+                 
 
 
                     </div>
@@ -61,18 +74,26 @@
 
 
 <script>
+    $("#smtpDebug").select2();
+    $("#SMTPAuth").select2();
+    $("#smptSecurity").select2();
 
-    $(document).on('click', '.btnAddEmpresa', function (e) {
-        
+    $(document).on('click', '.btnAddEmpresa', function(e) {
+
         console.log("asd");
-    
+
         $(".form-control").val("");
 
         $("#idEmpresa").val("0");
 
-         $(".previsualizarLogo").attr('src','<?= base_URL("images/logo") ?>/anonymous.png'  );
-        
+        $(".previsualizarLogo").attr('src', '<?= base_URL("images/logo") ?>/default.png');
+
         $("#btnSaveEmpresa").removeAttr("disabled");
+
+        $("#smtpDebug").val("0");
+        $("#SMTPAuth").val("0");
+        $("#smptSecurity").val("0");
+        $("#facturacionRD").bootstrapToggle("off");
 
     });
 
@@ -82,7 +103,7 @@
 
 
 
-    $(document).on('click', '.btnEditarEmpresa', function (e) {
+    $(document).on('click', '.btnEditarEmpresa', function(e) {
 
 
         var idEmpresa = $(this).attr("idEmpresa");
@@ -94,10 +115,6 @@
         $("#btnGuardarEmpresa").removeAttr("disabled");
 
     });
-
-
-
-
 </script>
 
 
