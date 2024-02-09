@@ -85,6 +85,18 @@ $routes->group('admin', function ($routes) {
         'controller' => 'categoriesController',
         'except' => 'show'
     ]);
+    
+    
+        $routes->resource('usuariosempresa', [
+        'filter' => 'permission:usuariosempresa-permission',
+        'controller' => 'usuariosempresaController',
+        'except' => 'show'
+    ]);
+    $routes->post('usuariosempresa/save', 'UsuariosempresaController::save');
+    $routes->post('usuariosempresa/getUsuariosempresa', 'UsuariosempresaController::getUsuariosempresa');
+
+    $routes->get('empresa/usuariosPorEmpresa/(:any)', 'EmpresasController::usuariosPorEmpresa/$1');
+    $routes->post('empresa/activarDesactivar', 'EmpresasController::activarDesactivar');
 
     $routes->post('categories/save', 'CategoriesController::save');
     $routes->post('categories/getCategories', 'CategoriesController::getCategories');

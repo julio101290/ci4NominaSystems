@@ -48,7 +48,6 @@
             [0, 'asc']
         ],
 
-
         ajax: {
             url: `<?= base_url('admin/empresa/usuariosPorEmpresa') ?>/` + "0",
             method: 'GET',
@@ -56,18 +55,18 @@
 
         },
         columnDefs: [{
-            orderable: false,
-            targets: [1],
-            searchable: false,
-            targets: [1]
+                orderable: false,
+                targets: [1],
+                searchable: false,
+                targets: [1]
 
-        }],
+            }],
         columns: [{
                 'data': 'username'
             },
 
             {
-                "data": function(data) {
+                "data": function (data) {
 
                     if (data.status == "on") {
 
@@ -94,6 +93,70 @@
                 }
             }
         ]
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+
+        if (jqXHR.status === 0) {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No hay conexión.!" + jqXHR.responseText
+            });
+
+
+        } else if (jqXHR.status == 404) {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Requested page not found [404]" + jqXHR.responseText
+            });
+
+
+        } else if (jqXHR.status == 500) {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Internal Server Error [500]." + jqXHR.responseText
+            });
+
+
+        } else if (textStatus === 'parsererror') {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Requested JSON parse failed." + jqXHR.responseText
+            });
+
+        } else if (textStatus === 'timeout') {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Time out error." + jqXHR.responseText
+            });
+
+        } else if (textStatus === 'abort') {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Ajax request aborted." + jqXHR.responseText
+            });
+
+
+        } else {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Uncaught Error: ' + jqXHR.responseText
+            });
+
+
+        }
     });
 
 
@@ -101,7 +164,7 @@
     /**
      * Carga datos actualizar
      */
-    $(".tableEmpresas").on("click", ".btn-users", function() {
+    $(".tableEmpresas").on("click", ".btn-users", function () {
 
         var empresa = $(this).attr("data-id");
 
@@ -116,14 +179,14 @@
      * Guarda derecho
      */
 
-    $(".tabla-usuariosEmpresa").on("click", ".btnActivate", function() {
+    $(".tabla-usuariosEmpresa").on("click", ".btnActivate", function () {
 
 
         var statusActual = $(this).attr("status");
         var idEmpresaUsuario = $(this).attr("idEmpresaUsuario");
         var idUsuario = $(this).attr("iduser");
         var idEmpresa = $(this).attr("idEmpresa");
-      
+
 
         if (statusActual == "on") {
 
@@ -151,7 +214,7 @@
             cache: false,
             contentType: false,
             processData: false,
-            success: function(respuesta) {
+            success: function (respuesta) {
 
                 if (respuesta == "ok") {
                     tablaUsuarios.ajax.url(`<?= base_url('admin/empresa/usuariosPorEmpresa') ?>/` + idEmpresa).load();
@@ -160,11 +223,11 @@
                 } else {
 
                     Toast.fire({
-                            icon: 'error',
-                            title: respuesta,
-                        });
+                        icon: 'error',
+                        title: respuesta,
+                    });
 
-                   
+
                 }
 
 
