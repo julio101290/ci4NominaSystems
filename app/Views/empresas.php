@@ -88,12 +88,12 @@
             dataType: "json"
         },
         columnDefs: [{
-            orderable: false,
-            targets: [11],
-            searchable: false,
-            targets: [11]
+                orderable: false,
+                targets: [11],
+                searchable: false,
+                targets: [11]
 
-        }],
+            }],
         columns: [{
                 'data': 'id'
             },
@@ -137,10 +137,8 @@
                 'data': 'updated_at'
             },
 
-
-
             {
-                "data": function(data) {
+                "data": function (data) {
                     return `<td class="text-right py-0 align-middle">
                             <div class="btn-group btn-group-sm">
                                 <button class="btn btn-warning btnEditEmpresa" data-toggle="modal" idEmpresa="${data.id}" data-target="#modalAddEmpresa">  <i class=" fa fa-edit"></i></button>
@@ -156,7 +154,7 @@
 
 
 
-    $(document).on('click', '#btnSaveEmpresa', function(e) {
+    $(document).on('click', '#btnSaveEmpresa', function (e) {
 
 
 
@@ -175,12 +173,12 @@
         var certificado = $("#certificado").prop("files")[0];
         var archivoKey = $("#archivoKey").prop("files")[0];
         var contraCertificado = $("#contraCertificado").val();
-        
-        
+
+
         var certificadoCSD = $("#certificadoCSD").prop("files")[0];
         var archivoKeyCSD = $("#archivoKeyCSD").prop("files")[0];
         var contraCertificadoCSD = $("#contraCertificadoCSD").val();
-        
+
         var logo = $("#logo").prop("files")[0];
 
         var email = $("#email").val();
@@ -219,15 +217,15 @@
         datos.append("rfc", rfc);
         datos.append("CURP", CURP);
         datos.append("regimenFiscal", regimenFiscal);
-        
+
         datos.append("certificado", certificado);
         datos.append("archivoKey", archivoKey);
         datos.append("contraCertificado", contraCertificado);
-        
+
         datos.append("certificadoCSD", certificadoCSD);
         datos.append("archivoKeyCSD", archivoKeyCSD);
         datos.append("contraCertificadoCSD", contraCertificadoCSD);
-        
+
         datos.append("logo", logo);
 
         datos.append("email", email);
@@ -241,47 +239,125 @@
 
         $.ajax({
 
-                url: "<?= base_url('admin/empresas/save') ?>",
-                method: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                //dataType:"json",
-                success: function(respuesta) {
+            url: "<?= base_url('admin/empresas/save') ?>",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            //dataType:"json",
+            success: function (respuesta) {
 
 
-                    if (respuesta.match(/Correctamente.*/)) {
+                if (respuesta.match(/Correctamente.*/)) {
 
 
-                        Toast.fire({
-                            icon: 'success',
-                            title: "<?= lang('empresas..msg.msg_save') ?>"
-                        });
+                    Toast.fire({
+                        icon: 'success',
+                        title: "<?= lang('empresas..msg.msg_save') ?>"
+                    });
 
 
-                        tableEmpresas.ajax.reload();
-                        $("#btnSaveEmpresa").removeAttr("disabled");
+                    tableEmpresas.ajax.reload();
+                    $("#btnSaveEmpresa").removeAttr("disabled");
 
 
-                        $('#modalAddEmpresa').modal('hide');
-                    } else {
+                    $('#modalAddEmpresa').modal('hide');
+                } else {
 
-                        Toast.fire({
-                            icon: 'error',
-                            title: respuesta
-                        });
+                    Toast.fire({
+                        icon: 'error',
+                        title: respuesta
+                    });
 
-                        $("#btnSaveEmpresa").removeAttr("disabled");
-                        //  $('#modalAgregarPaciente').modal('hide');
-
-                    }
+                    $("#btnSaveEmpresa").removeAttr("disabled");
+                    //  $('#modalAgregarPaciente').modal('hide');
 
                 }
 
             }
 
-        )
+        }
+
+        ).fail(function (jqXHR, textStatus, errorThrown) {
+
+            if (jqXHR.status === 0) {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No hay conexión.!" + jqXHR.responseText
+                });
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            } else if (jqXHR.status == 404) {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Requested page not found [404]" + jqXHR.responseText
+                });
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            } else if (jqXHR.status == 500) {
+                
+                var mensaje = JSON.parse(jqXHR.responseText);
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "" + mensaje["message"]
+                });
+
+                $("#btnSaveEmpresa").removeAttr("disabled");
+
+
+            } else if (textStatus === 'parsererror') {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Requested JSON parse failed." + jqXHR.responseText
+                });
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            } else if (textStatus === 'timeout') {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Time out error." + jqXHR.responseText
+                });
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            } else if (textStatus === 'abort') {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Ajax request aborted." + jqXHR.responseText
+                });
+
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            } else {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Uncaught Error: ' + jqXHR.responseText
+                });
+
+
+                $(".btnSaveEmpresa").removeAttr("disabled");
+
+            }
+        })
 
 
 
@@ -298,7 +374,7 @@
     /*=============================================
      EDITAR PACIENTE
      =============================================*/
-    $(".tableEmpresas").on("click", ".btnEditEmpresa", function() {
+    $(".tableEmpresas").on("click", ".btnEditEmpresa", function () {
 
         var idEmpresa = $(this).attr("idEmpresa");
 
@@ -316,7 +392,7 @@
             contentType: false,
             processData: false,
             dataType: "json",
-            success: function(respuesta) {
+            success: function (respuesta) {
                 console.log(respuesta);
                 $("#idEmpresa").val(respuesta["id"]);
                 $("#nombre").val(respuesta["nombre"]);
@@ -344,7 +420,7 @@
                 $("#smtpDebug").trigger("change");
                 $("#SMTPAuth").trigger("change");
                 $("#smptSecurity").trigger("change");
-                
+
                 $("#contraCertificadoCSD").val(respuesta["contraCertificadoCSD"]);
 
                 $("#facturacionRD").bootstrapToggle(respuesta["facturacionRD"]);
@@ -367,7 +443,7 @@
     /*=============================================
      ELIMINAR PACIENTE
      =============================================*/
-    $(".tableEmpresas").on("click", ".btn-delete", function() {
+    $(".tableEmpresas").on("click", ".btn-delete", function () {
 
         var idEmpresa = $(this).attr("data-id");
 
@@ -375,35 +451,35 @@
         console.log("eliminar");
 
         Swal.fire({
-                title: '<?= lang('boilerplate.global.sweet.title') ?>',
-                text: "<?= lang('boilerplate.global.sweet.text') ?>",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '<?= lang('boilerplate.global.sweet.confirm_delete') ?>'
-            })
-            .then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: `<?= base_url('admin/empresas') ?>/` + idEmpresa,
-                        method: 'DELETE',
-                    }).done((data, textStatus, jqXHR) => {
-                        Toast.fire({
-                            icon: 'success',
-                            title: jqXHR.statusText,
-                        });
+            title: '<?= lang('boilerplate.global.sweet.title') ?>',
+            text: "<?= lang('boilerplate.global.sweet.text') ?>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<?= lang('boilerplate.global.sweet.confirm_delete') ?>'
+        })
+                .then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: `<?= base_url('admin/empresas') ?>/` + idEmpresa,
+                            method: 'DELETE',
+                        }).done((data, textStatus, jqXHR) => {
+                            Toast.fire({
+                                icon: 'success',
+                                title: jqXHR.statusText,
+                            });
 
 
-                        tableEmpresas.ajax.reload();
-                    }).fail((error) => {
-                        Toast.fire({
-                            icon: 'error',
-                            title: error.responseJSON.messages.error,
-                        });
-                    })
-                }
-            })
+                            tableEmpresas.ajax.reload();
+                        }).fail((error) => {
+                            Toast.fire({
+                                icon: 'error',
+                                title: error.responseJSON.messages.error,
+                            });
+                        })
+                    }
+                })
     });
 
 
@@ -413,7 +489,7 @@
     /*=============================================
      SUBIENDO LA FOTO DEL USUARIO
      =============================================*/
-    $(".logo").change(function() {
+    $(".logo").change(function () {
 
         var imagen = this.files[0];
 
@@ -446,7 +522,7 @@
             var datosImagen = new FileReader;
             datosImagen.readAsDataURL(imagen);
 
-            $(datosImagen).on("load", function(event) {
+            $(datosImagen).on("load", function (event) {
 
                 var rutaImagen = event.target.result;
 

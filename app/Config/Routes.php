@@ -85,9 +85,8 @@ $routes->group('admin', function ($routes) {
         'controller' => 'categoriesController',
         'except' => 'show'
     ]);
-    
-    
-        $routes->resource('usuariosempresa', [
+
+    $routes->resource('usuariosempresa', [
         'filter' => 'permission:usuariosempresa-permission',
         'controller' => 'usuariosempresaController',
         'except' => 'show'

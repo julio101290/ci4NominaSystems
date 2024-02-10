@@ -93,71 +93,7 @@
                 }
             }
         ]
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-
-        if (jqXHR.status === 0) {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "No hay conexión.!" + jqXHR.responseText
-            });
-
-
-        } else if (jqXHR.status == 404) {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Requested page not found [404]" + jqXHR.responseText
-            });
-
-
-        } else if (jqXHR.status == 500) {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Internal Server Error [500]." + jqXHR.responseText
-            });
-
-
-        } else if (textStatus === 'parsererror') {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Requested JSON parse failed." + jqXHR.responseText
-            });
-
-        } else if (textStatus === 'timeout') {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Time out error." + jqXHR.responseText
-            });
-
-        } else if (textStatus === 'abort') {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Ajax request aborted." + jqXHR.responseText
-            });
-
-
-        } else {
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: 'Uncaught Error: ' + jqXHR.responseText
-            });
-
-
-        }
-    });
+    })
 
 
     //CARGA CONSULTAS ANTERIORES

@@ -10,7 +10,7 @@ class Empresas extends Migration {
         // Empresas
         $this->forge->addField([
             'id' => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'idEmpresa' => ['type' => 'int',  'unsigned' => true, ],
+            'idEmpresa' => ['type' => 'int', 'unsigned' => true,],
             'nombre' => ['type' => 'varchar', 'constraint' => 500, 'null' => false],
             'direccion' => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
             'rfc' => ['type' => 'varchar', 'constraint' => 14, 'null' => false],
@@ -27,9 +27,22 @@ class Empresas extends Migration {
             'codigoPostal' => ['type' => 'varchar', 'constraint' => 68, 'null' => true],
             'CURP' => ['type' => 'varchar', 'constraint' => 68, 'null' => true],
             'facturacionRD' => ['type' => 'varchar', 'constraint' => 4, 'null' => true],
+            'email' => ['type' => 'varchar', 'constraint' => 256, 'null' => true],
+            'host' => ['type' => 'varchar', 'constraint' => 128, 'null' => true],
+            'smtpDebug' => ['type' => 'varchar', 'constraint' => 16, 'null' => true],
+            'SMTPAuth' => ['type' => 'varchar', 'constraint' => 16, 'null' => true],
+            'port' => ['type' => 'varchar', 'constraint' => 16, 'null' => true],
+            'smptSecurity' => ['type' => 'varchar', 'constraint' => 16, 'null' => true],
+            'pass' => ['type' => 'varchar', 'constraint' => 64, 'null' => true],
+            
+            'certificadoCSD' => ['type' => 'varchar', 'constraint' => 1024, 'null' => true],
+            'archivoKeyCSD' => ['type' => 'varchar', 'constraint' => 1024, 'null' => true],
+            'contraCertificadoCSD' => ['type' => 'varchar', 'constraint' => 128, 'null' => true],
+            
             'created_at' => ['type' => 'datetime', 'null' => true],
             'updated_at' => ['type' => 'datetime', 'null' => true],
             'deleted_at' => ['type' => 'datetime', 'null' => true],
+            
         ]);
 
         $this->forge->addKey('id', true);
@@ -40,5 +53,4 @@ class Empresas extends Migration {
     public function down() {
         $this->forge->dropTable('empresas', true);
     }
-
 }
