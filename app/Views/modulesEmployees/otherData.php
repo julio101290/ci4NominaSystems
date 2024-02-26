@@ -24,14 +24,14 @@
 
             <select class="form-control select" name="scholarship" id="scholarship" style="width: 80%;">
 
-                <option value="withoutstudies"><?= lang('employees.fields.scholarshipWithoutstudies') ?></option>
-                <option value="primary"><?= lang('employees.fields.scholarshipPrimary') ?></option>
-                <option value="secundary"><?= lang('employees.fields.scholarshipSecundaria') ?></option>
-                <option value="preparatory"><?= lang('employees.fields.scholarshipPreparatory') ?></option>
-                <option value="technical"><?= lang('employees.fields.scholarshipTechnical') ?></option>
-                <option value="Degree"><?= lang('employees.fields.scholarshipDegree') ?></option>
-                <option value="master"><?= lang('employees.fields.scholarshipMaster') ?></option>
-                <option value="doctorate"><?= lang('employees.fields.scholarshipDoctorate') ?></option>
+                <option value="0"><?= lang('employees.fields.scholarshipWithoutstudies') ?></option>
+                <option value="1"><?= lang('employees.fields.scholarshipPrimary') ?></option>
+                <option value="2"><?= lang('employees.fields.scholarshipSecundaria') ?></option>
+                <option value="3"><?= lang('employees.fields.scholarshipPreparatory') ?></option>
+                <option value="4"><?= lang('employees.fields.scholarshipTechnical') ?></option>
+                <option value="5"><?= lang('employees.fields.scholarshipDegree') ?></option>
+                <option value="6"><?= lang('employees.fields.scholarshipMaster') ?></option>
+                <option value="7"><?= lang('employees.fields.scholarshipDoctorate') ?></option>
 
             </select>
 

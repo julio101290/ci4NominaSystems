@@ -8,6 +8,8 @@ use \App\Models\{
 };
 use App\Models\LogModel;
 use App\Models\TurnsModel;
+use App\Models\EmpresasModel;
+
 use CodeIgniter\API\ResponseTrait;
 
 class EmployeesController extends BaseController {
@@ -18,30 +20,91 @@ class EmployeesController extends BaseController {
     protected $employees;
     protected $turns;
     protected $banks;
+    protected $empresa;
 
     public function __construct() {
         $this->employees = new EmployeesModel();
         $this->log = new LogModel();
         $this->turns = new TurnsModel();
         $this->banks = new \App\Models\BanksModel();
+        $this->empresa = new EmpresasModel();
+        
         helper('menu');
     }
 
     public function index() {
 
+        helper('auth');
+
+        $idUser = user()->id;
+        $titulos["empresas"] = $this->empresa->mdlEmpresasPorUsuario($idUser);
+
+        if (count($titulos["empresas"]) == "0") {
+
+            $empresasID[0] = "0";
+        } else {
+
+            $empresasID = array_column($titulos["empresas"], "id");
+        }
+
 
         if ($this->request->isAJAX()) {
 
-
-
-
-            $datos = $this->employees->select('id,firstname,lastname,motherLastName,nameAbrev,sex,birthdate,placebirth,RFC,CURP,scholarship,initials,email,nip,turn,street,number,cologne,state,postalCode,phone,civilStatus,sons,spouse,father,mother,socialSecurity,familyMedicalUnit,infonavit,factor,date,numberInfonavit,nameBeneficiary,relationBeneficiary,porcenBeneficiary,nameBeneficiary2,relationBeneficiary2,porcenBeneficiary2,bank,bankAccount,creditCard,statusCard,CLABE,created_at,updated_at,deleted_at')->where('deleted_at', null);
+            $datos = $this->employees->select('id
+                                                ,codigo
+                                                ,firstname
+                                                ,lastname
+                                                ,motherLastName
+                                                ,nameAbrev
+                                                ,sex
+                                                ,birthdate
+                                                ,placebirth
+                                                ,RFC
+                                                ,CURP
+                                                ,scholarship
+                                                ,initials
+                                                ,email
+                                                ,nip
+                                                ,turn
+                                                ,street
+                                                ,number
+                                                ,cologne
+                                                ,state
+                                                ,postalCode
+                                                ,phone
+                                                ,civilStatus
+                                                ,sons
+                                                ,spouse
+                                                ,father
+                                                ,mother
+                                                ,socialSecurity
+                                                ,familyMedicalUnit
+                                                ,infonavit
+                                                ,factor
+                                                ,date
+                                                ,numberInfonavit
+                                                ,nameBeneficiary
+                                                ,relationBeneficiary
+                                                ,porcenBeneficiary
+                                                ,nameBeneficiary2
+                                                ,relationBeneficiary2
+                                                ,porcenBeneficiary2
+                                                ,bank
+                                                ,bankAccount
+                                                ,creditCard
+                                                ,statusCard
+                                                ,CLABE
+                                                ,created_at
+                                                ,updated_at
+                                                ,deleted_at')
+                                                ->where('deleted_at', null)
+                                                ->whereIn('idEmpresa', $empresasID);;
 
             return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
         }
 
         $turns = $this->turns->where("deleted_at", null)->asObject()->findAll();
-        $banks = $this->banks->where("deleted_at",null)->asObject()->findAll();
+        $banks = $this->banks->where("deleted_at", null)->asObject()->findAll();
 
         $titulos["banks"] = $banks;
         $titulos["turns"] = $turns;
@@ -154,5 +217,4 @@ class EmployeesController extends BaseController {
         $this->log->save($logData);
         return $this->respondDeleted($found, lang('employees.msg_delete'));
     }
-
 }

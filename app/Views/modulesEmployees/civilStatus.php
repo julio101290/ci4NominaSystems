@@ -9,12 +9,12 @@
             </div>
 
             <select class="form-control select" name="civilStatus" id="civilStatus" style="width: 80%;">
-
-                <option value="freeunion"><?= lang('employees.fields.civilStatusFreeunion') ?></option>
-                <option value="single"><?= lang('employees.fields.civilStatusSingle') ?></option>
-                <option value="married"><?= lang('employees.fields.civilStatusMarried') ?></option>
-                <option value="divorced"><?= lang('employees.fields.civilStatusDivorced') ?></option>
-                <option value="widower"><?= lang('employees.fields.civilStatusWidower') ?></option>
+                
+                <option value="1"><?= lang('employees.fields.civilStatusSingle') ?></option>
+                <option value="2"><?= lang('employees.fields.civilStatusMarried') ?></option>
+                <option value="3"><?= lang('employees.fields.civilStatusFreeunion') ?></option>
+                <option value="4"><?= lang('employees.fields.civilStatusDivorced') ?></option>
+                <option value="5"><?= lang('employees.fields.civilStatusWidower') ?></option>
 
             </select>
 

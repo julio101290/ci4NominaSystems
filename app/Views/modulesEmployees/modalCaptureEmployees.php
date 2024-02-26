@@ -98,12 +98,22 @@
 
 <script>
 
+    $(".idEmpresaEmpleados").select2();
+    
+     $(".statusCard").select2();
+
+
     $(document).on('click', '.btnAddEmployees', function (e) {
 
+        var idEmpresa = $("#idEmpresaEmpleados").val();
+        
+        console.log(idEmpresa);
 
         $(".form-control").val("");
 
         $("#idEmployees").val("0");
+        
+        $(".idEmpresaEmpleados").val(idEmpresa);
 
         $("#btnSaveEmployees").removeAttr("disabled");
 

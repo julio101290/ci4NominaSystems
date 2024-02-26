@@ -100,7 +100,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            
+
             <select class="form-control select" name="bank" id="bank" style="width: 80%;">
 
                 <option value="0"><?= lang('employees.fields.turnSelect') ?></option>
@@ -111,11 +111,11 @@
                 }
                 ?>
 
-               
+
 
             </select>
-            
-          
+
+
         </div>
     </div>
 </div>
@@ -150,7 +150,16 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            <input type="text" name="statusCard" id="statusCard" class="form-control <?= session('error.statusCard') ? 'is-invalid' : '' ?>" value="<?= old('statusCard') ?>" placeholder="<?= lang('employees.fields.statusCard') ?>" autocomplete="off">
+
+            <select class="form-control select statusCard" name="statusCard" id="statusCard" style="width: 80%;">
+
+                <option value="1">Activo        </option>
+                <option value="2">Extraviado    </option>
+                <option value="3">Inactivo      </option>
+
+
+            </select>
+            
         </div>
     </div>
 </div>

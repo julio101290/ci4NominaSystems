@@ -33,53 +33,18 @@
                             <tr>
 
                                 <th>#</th>
+                                <th>Código</th>
                                 <th><?= lang('employees.fields.firstname') ?></th>
                                 <th><?= lang('employees.fields.lastname') ?></th>
                                 <th><?= lang('employees.fields.motherLastName') ?></th>
                                 <th><?= lang('employees.fields.nameAbrev') ?></th>
-                                <th><?= lang('employees.fields.sex') ?></th>
                                 <th><?= lang('employees.fields.birthdate') ?></th>
                                 <th><?= lang('employees.fields.placebirth') ?></th>
                                 <th><?= lang('employees.fields.RFC') ?></th>
                                 <th><?= lang('employees.fields.CURP') ?></th>
-                                <th><?= lang('employees.fields.scholarship') ?></th>
-                                <th><?= lang('employees.fields.initials') ?></th>
-                                <th><?= lang('employees.fields.email') ?></th>
-                                <th><?= lang('employees.fields.nip') ?></th>
-                                <th><?= lang('employees.fields.turn') ?></th>
-                                <th><?= lang('employees.fields.street') ?></th>
-                                <th><?= lang('employees.fields.number') ?></th>
-                                <th><?= lang('employees.fields.cologne') ?></th>
-                                <th><?= lang('employees.fields.state') ?></th>
-                                <th><?= lang('employees.fields.postalCode') ?></th>
-                                <th><?= lang('employees.fields.phone') ?></th>
-                                <th><?= lang('employees.fields.civilStatus') ?></th>
-                                <th><?= lang('employees.fields.sons') ?></th>
-                                <th><?= lang('employees.fields.spouse') ?></th>
-                                <th><?= lang('employees.fields.father') ?></th>
-                                <th><?= lang('employees.fields.mother') ?></th>
-                                <th><?= lang('employees.fields.socialSecurity') ?></th>
-                                <th><?= lang('employees.fields.familyMedicalUnit') ?></th>
-                                <th><?= lang('employees.fields.infonavit') ?></th>
-                                <th><?= lang('employees.fields.factor') ?></th>
-                                <th><?= lang('employees.fields.date') ?></th>
-                                <th><?= lang('employees.fields.numberInfonavit') ?></th>
-                                <th><?= lang('employees.fields.nameBeneficiary') ?></th>
-                                <th><?= lang('employees.fields.relationBeneficiary') ?></th>
-                                <th><?= lang('employees.fields.porcenBeneficiary') ?></th>
-                                <th><?= lang('employees.fields.nameBeneficiary2') ?></th>
-                                <th><?= lang('employees.fields.relationBeneficiary2') ?></th>
-                                <th><?= lang('employees.fields.porcenBeneficiary2') ?></th>
-                                <th><?= lang('employees.fields.bank') ?></th>
-                                <th><?= lang('employees.fields.bankAccount') ?></th>
-                                <th><?= lang('employees.fields.creditCard') ?></th>
-                                <th><?= lang('employees.fields.statusCard') ?></th>
-                                <th><?= lang('employees.fields.CLABE') ?></th>
-                                <th><?= lang('employees.fields.created_at') ?></th>
-                                <th><?= lang('employees.fields.updated_at') ?></th>
-                                <th><?= lang('employees.fields.deleted_at') ?></th>
 
-                                <th><?= lang('employees.fields.actions') ?> </th>
+
+                                <th>Acciones</th>
 
                             </tr>
                         </thead>
@@ -117,13 +82,17 @@
         },
         columnDefs: [{
                 orderable: false,
-                targets: [46],
+                targets: [10],
                 searchable: false,
-                targets: [46]
+                targets: [10]
 
             }],
         columns: [{
                 'data': 'id'
+            },
+
+            {
+                'data': 'codigo'
             },
 
             {
@@ -143,10 +112,6 @@
             },
 
             {
-                'data': 'sex'
-            },
-
-            {
                 'data': 'birthdate'
             },
 
@@ -160,150 +125,6 @@
 
             {
                 'data': 'CURP'
-            },
-
-            {
-                'data': 'scholarship'
-            },
-
-            {
-                'data': 'initials'
-            },
-
-            {
-                'data': 'email'
-            },
-
-            {
-                'data': 'nip'
-            },
-
-            {
-                'data': 'turn'
-            },
-
-            {
-                'data': 'street'
-            },
-
-            {
-                'data': 'number'
-            },
-
-            {
-                'data': 'cologne'
-            },
-
-            {
-                'data': 'state'
-            },
-
-            {
-                'data': 'postalCode'
-            },
-
-            {
-                'data': 'phone'
-            },
-
-            {
-                'data': 'civilStatus'
-            },
-
-            {
-                'data': 'sons'
-            },
-
-            {
-                'data': 'spouse'
-            },
-
-            {
-                'data': 'father'
-            },
-
-            {
-                'data': 'mother'
-            },
-
-            {
-                'data': 'socialSecurity'
-            },
-
-            {
-                'data': 'familyMedicalUnit'
-            },
-
-            {
-                'data': 'infonavit'
-            },
-
-            {
-                'data': 'factor'
-            },
-
-            {
-                'data': 'date'
-            },
-
-            {
-                'data': 'numberInfonavit'
-            },
-
-            {
-                'data': 'nameBeneficiary'
-            },
-
-            {
-                'data': 'relationBeneficiary'
-            },
-
-            {
-                'data': 'porcenBeneficiary'
-            },
-
-            {
-                'data': 'nameBeneficiary2'
-            },
-
-            {
-                'data': 'relationBeneficiary2'
-            },
-
-            {
-                'data': 'porcenBeneficiary2'
-            },
-
-            {
-                'data': 'bank'
-            },
-
-            {
-                'data': 'bankAccount'
-            },
-
-            {
-                'data': 'creditCard'
-            },
-
-            {
-                'data': 'statusCard'
-            },
-
-            {
-                'data': 'CLABE'
-            },
-
-            {
-                'data': 'created_at'
-            },
-
-            {
-                'data': 'updated_at'
-            },
-
-            {
-                'data': 'deleted_at'
             },
 
             {
@@ -323,6 +144,8 @@
 
     $(document).on('click', '#btnSaveEmployees', function (e) {
 
+        var idEmpresa = $("#idEmpresaEmpleados").val();
+        var codigo = $("#codigo").val();
 
         var idEmployees = $("#idEmployees").val();
         var firstname = $("#firstname").val();
@@ -371,6 +194,11 @@
         $("#btnSaveEmployees").attr("disabled", true);
 
         var datos = new FormData();
+
+        console.log("Escolaridad", scholarship);
+
+        datos.append("idEmpresa", idEmpresa);
+        datos.append("codigo", codigo);
         datos.append("idEmployees", idEmployees);
         datos.append("firstname", firstname);
         datos.append("lastname", lastname);
@@ -414,6 +242,7 @@
         datos.append("creditCard", creditCard);
         datos.append("statusCard", statusCard);
         datos.append("CLABE", CLABE);
+
 
 
         $.ajax({
@@ -485,6 +314,8 @@
             dataType: "json",
             success: function (respuesta) {
                 $("#idEmployees").val(respuesta["id"]);
+                $("#codigo").val(respuesta["codigo"]);
+                $("#idEmpresaEmpleados").val(respuesta["idEmpresa"]).trigger("change");
 
                 $("#firstname").val(respuesta["firstname"]);
                 $("#lastname").val(respuesta["lastname"]);
@@ -518,6 +349,9 @@
                 $("#socialSecurity").val(respuesta["socialSecurity"]);
                 $("#familyMedicalUnit").val(respuesta["familyMedicalUnit"]);
                 $("#infonavit").val(respuesta["infonavit"]);
+
+                $("#infonavit").trigger("change");
+
                 $("#factor").val(respuesta["factor"]);
                 $("#date").val(respuesta["date"]);
                 $("#numberInfonavit").val(respuesta["numberInfonavit"]);
@@ -529,10 +363,10 @@
                 $("#relationBeneficiary2").val(respuesta["relationBeneficiary2"]);
                 $("#relationBeneficiary2").trigger("change");
                 $("#porcenBeneficiary2").val(respuesta["porcenBeneficiary2"]);
-                $("#bank").val(respuesta["bank"]);
+                $("#bank").val(respuesta["bank"]).trigger("change");
                 $("#bankAccount").val(respuesta["bankAccount"]);
                 $("#creditCard").val(respuesta["creditCard"]);
-                $("#statusCard").val(respuesta["statusCard"]);
+                $("#statusCard").val(respuesta["statusCard"]).trigger("change");
                 $("#CLABE").val(respuesta["CLABE"]);
 
 
@@ -590,7 +424,7 @@
     $("#relationBeneficiary").select2();
     $("#turn").select2();
     $("#bank").select2();
-    
+
 
 </script>
 <?= $this->endSection() ?>

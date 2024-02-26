@@ -19,6 +19,9 @@
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
             <input type="text" name="familyMedicalUnit" id="familyMedicalUnit" class="form-control <?= session('error.familyMedicalUnit') ? 'is-invalid' : '' ?>" value="<?= old('familyMedicalUnit') ?>" placeholder="<?= lang('employees.fields.familyMedicalUnit') ?>" autocomplete="off">
+
+
+
         </div>
     </div>
 </div>
@@ -29,7 +32,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            <input type="text" name="infonavit" id="infonavit" class="form-control <?= session('error.infonavit') ? 'is-invalid' : '' ?>" value="<?= old('infonavit') ?>" placeholder="<?= lang('employees.fields.infonavit') ?>" autocomplete="off">
+
+            <select class="form-control select infonavit" name="infonavit" id="infonavit" style="width: 80%;">
+
+                <option value="0">No</option>
+                <option value="1">Cuota Fija</option>
+                <option value="2">Porcentaje</option>
+                <option value="3">Unit. Med Act.</option>
+
+          </select>
         </div>
     </div>
 </div>
@@ -40,7 +51,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
             </div>
-            <input type="text" name="factor" id="factor" class="form-control <?= session('error.factor') ? 'is-invalid' : '' ?>" value="<?= old('factor') ?>" placeholder="<?= lang('employees.fields.factor') ?>" autocomplete="off">
+            <input type="number" step="0.0000001" name="factor" id="factor" class="form-control <?= session('error.factor') ? 'is-invalid' : '' ?>" value="<?= old('factor') ?>" placeholder="<?= lang('employees.fields.factor') ?>" autocomplete="off">
         </div>
     </div>
 </div>
