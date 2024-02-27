@@ -11,7 +11,15 @@ class CostcenterModel extends Model {
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['id', 'code', 'name', 'type', 'branchoffice', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['id'
+        , 'idEmpresa'
+        , 'code'
+        , 'name'
+        , 'type'
+        , 'branchoffice'
+        , 'created_at'
+        , 'updated_at'
+        , 'deleted_at'];
     protected $useTimestamps = true;
     protected $createdField = 'created_at';
     protected $deletedField = 'deleted_at';

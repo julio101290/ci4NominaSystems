@@ -1,154 +1,178 @@
 <?php
 
- namespace App\Controllers;
+namespace App\Controllers;
 
- use App\Controllers\BaseController;
- use \App\Models\{CostcenterModel};
- use App\Models\LogModel;
- use CodeIgniter\API\ResponseTrait;
- use App\Models\BranchofficesModel;
+use App\Controllers\BaseController;
+use \App\Models\{
+    CostcenterModel
+};
+use App\Models\LogModel;
+use CodeIgniter\API\ResponseTrait;
+use App\Models\BranchofficesModel;
+use App\Models\EmpresasModel;
 
- class CostcenterController extends BaseController {
+class CostcenterController extends BaseController {
 
-     use ResponseTrait;
+    use ResponseTrait;
 
-     protected $log;
-     protected $costcenter;
-     protected $branchoffice;
+    protected $log;
+    protected $costcenter;
+    protected $branchoffice;
+    protected $empresa;
 
-     public function __construct() {
-         $this->costcenter = new CostcenterModel();
-         $this->log = new LogModel();
-         $this->branchoffice = new BranchofficesModel();
-         helper('menu');
-     }
+    public function __construct() {
+        $this->costcenter = new CostcenterModel();
+        $this->log = new LogModel();
+        $this->branchoffice = new BranchofficesModel();
+        $this->empresa = new EmpresasModel();
+        helper('menu');
+    }
 
-     public function index() {
+    public function index() {
 
+        helper('auth');
 
-         if ($this->request->isAJAX()) {
+        $idUser = user()->id;
+        $titulos["empresas"] = $this->empresa->mdlEmpresasPorUsuario($idUser);
 
+        if (count($titulos["empresas"]) == "0") {
 
+            $empresasID[0] = "0";
+        } else {
 
-
-             $datos = $this->costcenter->select('id,code,name,type,branchoffice,created_at,updated_at,deleted_at')->where('deleted_at', null);
-
-             return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
-         }
-         
-         $branchoffice = $this->branchoffice ->select("*")->asObject()->findAll();
-                 
-         $titulos["branchoffices"] =$branchoffice;
-         $titulos["title"] = lang('costcenter.title');
-         $titulos["subtitle"] = lang('costcenter.subtitle');
-
-
-         return view('costcenter', $titulos);
-     }
-
-     /**
-      * Read Costcenter
-      */
-     public function getCostcenter() {
+            $empresasID = array_column($titulos["empresas"], "id");
+        }
 
 
-         $idCostcenter = $this->request->getPost("idCostcenter");
-         $datosCostcenter = $this->costcenter->find($idCostcenter);
 
-         echo json_encode($datosCostcenter);
-     }
-
-     /**
-      * Save or update Costcenter
-      */
-     public function save() {
+        if ($this->request->isAJAX()) {
 
 
-         helper('auth');
-         $userName = user()->username;
-         $idUser = user()->id;
-
-         $datos = $this->request->getPost();
-
-         if ($datos["idCostcenter"] == 0) {
 
 
-             try {
+            $datos = $this->costcenter->select('id
+                                                ,code
+                                                ,name,type
+                                                ,branchoffice
+                                                ,created_at
+                                                ,updated_at
+                                                ,deleted_at')
+                                                ->where('deleted_at', null)
+                                                ->whereIn('idEmpresa', $empresasID);
+
+            return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
+        }
+
+        $branchoffice = $this->branchoffice->select("*")->asObject()->findAll();
+
+        $titulos["branchoffices"] = $branchoffice;
+        $titulos["title"] = lang('costcenter.title');
+        $titulos["subtitle"] = lang('costcenter.subtitle');
+
+        return view('costcenter', $titulos);
+    }
+
+    /**
+     * Read Costcenter
+     */
+    public function getCostcenter() {
 
 
-                 if ($this->costcenter->save($datos) === false) {
+        $idCostcenter = $this->request->getPost("idCostcenter");
+        $datosCostcenter = $this->costcenter->find($idCostcenter);
 
-                     $errores = $this->costcenter->errors();
+        echo json_encode($datosCostcenter);
+    }
 
-                     foreach ($errores as $field => $error) {
-
-                         echo $error . " ";
-                     }
-
-                     return;
-                 }
-
-                 $dateLog["description"] = lang("vehicles.logDescription") . json_encode($datos);
-                 $dateLog["user"] = $userName;
-
-                 $this->log->save($dateLog);
-
-                 echo "Guardado Correctamente";
-             } catch (\PHPUnit\Framework\Exception $ex) {
+    /**
+     * Save or update Costcenter
+     */
+    public function save() {
 
 
-                 echo "Error al guardar " . $ex->getMessage();
-             }
-         } else {
+        helper('auth');
+        $userName = user()->username;
+        $idUser = user()->id;
+
+        $datos = $this->request->getPost();
+
+        if ($datos["idCostcenter"] == 0) {
 
 
-             if ($this->costcenter->update($datos["idCostcenter"], $datos) == false) {
-
-                 $errores = $this->costcenter->errors();
-                 foreach ($errores as $field => $error) {
-
-                     echo $error . " ";
-                 }
-
-                 return;
-             } else {
-
-                 $dateLog["description"] = lang("costcenter.logUpdated") . json_encode($datos);
-                 $dateLog["user"] = $userName;
-
-                 $this->log->save($dateLog);
-                 echo "Actualizado Correctamente";
-
-                 return;
-             }
-         }
-
-         return;
-     }
-
-     /**
-      * Delete Costcenter
-      * @param type $id
-      * @return type
-      */
-     public function delete($id) {
-
-         $infoCostcenter = $this->costcenter->find($id);
-         helper('auth');
-         $userName = user()->username;
-
-         if (!$found = $this->costcenter->delete($id)) {
-             return $this->failNotFound(lang('costcenter.msg.msg_get_fail'));
-         }
+            try {
 
 
-         $this->costcenter->purgeDeleted();
-         $logData["description"] = lang("costcenter.logDeleted") . json_encode($infoCostcenter);
-         $logData["user"] = $userName;
+                if ($this->costcenter->save($datos) === false) {
 
-         $this->log->save($logData);
-         return $this->respondDeleted($found, lang('costcenter.msg_delete'));
-     }
+                    $errores = $this->costcenter->errors();
 
- }
-        
+                    foreach ($errores as $field => $error) {
+
+                        echo $error . " ";
+                    }
+
+                    return;
+                }
+
+                $dateLog["description"] = lang("vehicles.logDescription") . json_encode($datos);
+                $dateLog["user"] = $userName;
+
+                $this->log->save($dateLog);
+
+                echo "Guardado Correctamente";
+            } catch (\PHPUnit\Framework\Exception $ex) {
+
+
+                echo "Error al guardar " . $ex->getMessage();
+            }
+        } else {
+
+
+            if ($this->costcenter->update($datos["idCostcenter"], $datos) == false) {
+
+                $errores = $this->costcenter->errors();
+                foreach ($errores as $field => $error) {
+
+                    echo $error . " ";
+                }
+
+                return;
+            } else {
+
+                $dateLog["description"] = lang("costcenter.logUpdated") . json_encode($datos);
+                $dateLog["user"] = $userName;
+
+                $this->log->save($dateLog);
+                echo "Actualizado Correctamente";
+
+                return;
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * Delete Costcenter
+     * @param type $id
+     * @return type
+     */
+    public function delete($id) {
+
+        $infoCostcenter = $this->costcenter->find($id);
+        helper('auth');
+        $userName = user()->username;
+
+        if (!$found = $this->costcenter->delete($id)) {
+            return $this->failNotFound(lang('costcenter.msg.msg_get_fail'));
+        }
+
+
+        $this->costcenter->purgeDeleted();
+        $logData["description"] = lang("costcenter.logDeleted") . json_encode($infoCostcenter);
+        $logData["user"] = $userName;
+
+        $this->log->save($logData);
+        return $this->respondDeleted($found, lang('costcenter.msg_delete'));
+    }
+}

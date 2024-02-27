@@ -13,6 +13,37 @@
                     <input type="hidden" id="idCostcenter" name="idCostcenter" value="0">
 
                     <div class="form-group row">
+                        <label for="idEmpresa" class="col-sm-2 col-form-label">Empresa</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                </div>
+
+                                <select class="form-control idEmpresaCCO form-control" name="idEmpresaCCO" id="idEmpresaCCO" style="width:80%;">
+
+                                    <?php
+                                    $contadorEmpresas = 0;
+                                    foreach ($empresas as $key => $value) {
+
+
+                                        if ($contadorEmpresas == 0) {
+
+                                            echo "<option selected value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                        } else {
+
+                                            echo "<option value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                        }
+                                    }
+                                    ?>
+
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="code" class="col-sm-2 col-form-label"><?= lang('costcenter.fields.code') ?></label>
                         <div class="col-sm-10">
                             <div class="input-group">
@@ -41,7 +72,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                 </div>
-                                <input type="text" name="type" id="type" class="form-control <?= session('error.type') ? 'is-invalid' : '' ?>" value="<?= old('type') ?>" placeholder="<?= lang('costcenter.fields.type') ?>" autocomplete="off">
+                                <select class="form-control select type" id="type" name="type"  style="width:80%;">
+                                    <option value="-1">Seleccione Costo/gasto</option>
+                                    <option value="0">Costo </option>
+                                    <option value="1">Gasto </option>
+                                </select>
+
                             </div>
                         </div>
                     </div>
@@ -54,7 +90,7 @@
                                 </div>
 
 
-                                <select class="form-control select" name="branchoffice" id="branchoffice" style="width: 100%;">
+                                <select class="form-control select branchoffice" name="branchoffice" id="branchoffice" style="width: 80%;">
 
                                     <option value="0"><?= lang('costcenter.fields.branchoffice') ?></option>
                                     <?php
@@ -87,12 +123,17 @@
 
     $(document).on('click', '.btnAddCostcenter', function (e) {
 
+        var idEmpresa = $(".idEmpresaCCO").val();
+
+
 
         $(".form-control").val("");
 
         $("#idCostcenter").val("0");
 
         $("#btnSaveCostcenter").removeAttr("disabled");
+
+        $(".idEmpresaCCO").val(idEmpresa);
 
     });
 

@@ -19,14 +19,17 @@ class AutoCrudController extends BaseController {
     }
 
     public function index($table) {
-
+        
+        /*
         $this->generateModel($table);
         $this->generateController($table);
         $this->generateView($table);
         $this->generateViewModal($table);
         $this->generateLanguage($table);
-        //$this->generateMigration($table);
-        //$this->generateLanguageES($table);
+        $this->generateMigration($table);
+         * 
+         */
+        $this->generateLanguageES($table);
 
         $tableUpCase = ucfirst($table);
         $route = <<<EOF

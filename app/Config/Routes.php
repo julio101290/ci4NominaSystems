@@ -145,6 +145,15 @@ $routes->group('admin', function ($routes) {
     $routes->post('perceptionsanddeductions/save', 'PerceptionsanddeductionsController::save');
     $routes->post('perceptionsanddeductions/getPerceptionsanddeductions', 'PerceptionsanddeductionsController::getPerceptionsanddeductions');
 
+    $routes->resource('tiponomina', [
+        'filter' => 'permission:tiponomina-permission',
+        'controller' => 'tiponominaController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('tiponomina/save', 'TiponominaController::save');
+    $routes->post('tiponomina/getTiponomina', 'TiponominaController::getTiponomina');
+
     $routes->get('generateCRUD/(:any)', 'AutoCrudController::index/$1');
 
     $routes->resource('employees', [

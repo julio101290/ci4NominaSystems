@@ -130,15 +130,22 @@
     });
 
 
-
+    $(".idEmpresaCCO").select2();
+    $(".type").select2();
+    $(".branchoffice").select2();
+    
     $(document).on('click', '#btnSaveCostcenter', function (e) {
 
 
         var idCostcenter = $("#idCostcenter").val();
+        var idEmpresa = $("#idEmpresaCCO").val();
+
         var code = $("#code").val();
         var name = $("#name").val();
         var type = $("#type").val();
         var branchoffice = $("#branchoffice").val();
+        
+
 
         $("#btnSaveCostcenter").attr("disabled", true);
 
@@ -147,6 +154,7 @@
         datos.append("code", code);
         datos.append("name", name);
         datos.append("type", type);
+        datos.append("idEmpresa", idEmpresa);
         datos.append("branchoffice", branchoffice);
 
 
@@ -218,12 +226,20 @@
             processData: false,
             dataType: "json",
             success: function (respuesta) {
+                
                 $("#idCostcenter").val(respuesta["id"]);
+                $("#idEmpresaCCO").val(respuesta["idEmpresa"]);
 
                 $("#code").val(respuesta["code"]);
                 $("#name").val(respuesta["name"]);
                 $("#type").val(respuesta["type"]);
+                
+                $("#type").trigger("change");
+                
+                
                 $("#branchoffice").val(respuesta["branchoffice"]);
+                
+                
 
 
             }

@@ -98,7 +98,7 @@ class EmployeesController extends BaseController {
                                                 ,updated_at
                                                 ,deleted_at')
                                                 ->where('deleted_at', null)
-                                                ->whereIn('idEmpresa', $empresasID);;
+                                                ->whereIn('idEmpresa', $empresasID);
 
             return \Hermawan\DataTables\DataTable::of($datos)->toJson(true);
         }

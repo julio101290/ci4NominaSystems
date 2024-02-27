@@ -9,11 +9,10 @@ class CampoCodigoEmpleado extends Migration {
     public function up() {
 
         $campos = [
-            'codigo' => ['type' => 'bigint', 'constraint' => 20, 'null' => true],
             'idEmpresa' => ['type' => 'bigint', 'constraint' => 20, 'null' => true],
         ];
 
-        $this->forge->addColumn('employees', $campos);
+        $this->forge->addColumn('costcenter', $campos);
     }
 
     public function down() {
