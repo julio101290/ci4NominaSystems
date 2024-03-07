@@ -18,7 +18,7 @@ class Tiponomina extends Migration {
             'idEmpresa' => ['type' => 'int', 'constraint' => 11, 'null' => true],
             'idSucursal' => ['type' => 'int', 'constraint' => 11, 'null' => true],
             'porcISN' => ['type' => 'decimal', 'constraint' => 18, 'null' => true],
-            'entidadFederativa' => ['type' => 'int', 'constraint' => 11, 'null' => true],
+            'entidadFederativa' =>  ['type' => 'varchar', 'constraint' => 128, 'null' => true],
             'cxcNom' => ['type' => 'int', 'constraint' => 11, 'null' => true],
             'cxpISN' => ['type' => 'int', 'constraint' => 11, 'null' => true],
             'cxcInfonavit' => ['type' => 'int', 'constraint' => 11, 'null' => true],

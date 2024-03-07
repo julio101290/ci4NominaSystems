@@ -1,0 +1,41 @@
+ <?php
+$nominas["logDescription"] = "El registro en nominas fue guardado con los siguientes datos:";
+$nominas["logUpdate"] = "El registro en nominas fue actualizado con los siguientes datos:";
+$nominas["logDeleted"] = "El registro en nominas fue eliminado con los siguientes datos:";
+$nominas["msg_delete"] = "El Registro en nominas fue eliminado correctamente:";
+$nominas["add"] = "Agregar Nominas";
+$nominas["edit"] = "Editar nominas";
+$nominas["createEdit"] = "Crear / Editar";
+$nominas["title"] = "Admon. nominas";
+$nominas["subtitle"] = "Lista nominas";
+$nominas["fields"]["idEmpresa"] = "IdEmpresa";
+$nominas["fields"]["idTipoNominas"] = "IdTipoNominas";
+$nominas["fields"]["clave"] = "Clave";
+$nominas["fields"]["fechaInicial"] = "FechaInicial";
+$nominas["fields"]["fechaFinal"] = "FechaFinal";
+$nominas["fields"]["diasTrab"] = "DiasTrab";
+$nominas["fields"]["cerrada"] = "Cerrada";
+$nominas["fields"]["descripcion"] = "Descripcion";
+$nominas["fields"]["usuarioAperturo"] = "UsuarioAperturo";
+$nominas["fields"]["fechaCerrado"] = "FechaCerrado";
+$nominas["fields"]["usuarioCerrado"] = "UsuarioCerrado";
+$nominas["fields"]["diasPagados"] = "DiasPagados";
+$nominas["fields"]["fechaAplicacion"] = "FechaAplicacion";
+$nominas["fields"]["porcISN"] = "PorcISN";
+$nominas["fields"]["diasFestivos"] = "DiasFestivos";
+$nominas["fields"]["ise"] = "Ise";
+$nominas["fields"]["proveedorISN"] = "ProveedorISN";
+$nominas["fields"]["porrsg"] = "Porrsg";
+$nominas["fields"]["UMA"] = "UMA";
+$nominas["fields"]["created_at"] = "Created_at";
+$nominas["fields"]["updated_at"] = "Updated_at";
+$nominas["fields"]["deleted_at"] = "Deleted_at";
+
+ $nominas["fields"]["actions"] = "Acciones";       
+$nominas["msg"]["msg_insert"] = "Registro agregado correctamente.";
+$nominas["msg"]["msg_update"] = "Registro modificado correctamente.";
+$nominas["msg"]["msg_delete"] = "Registro eliminado correctamente.";
+$nominas["msg"]["msg_get"] = "Registro obtenido correctamente.";
+$nominas["msg"]["msg_get_fail"] = "Registro no encontrado o eliminado.";
+return $nominas;
+        

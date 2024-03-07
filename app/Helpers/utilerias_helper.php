@@ -20,6 +20,13 @@ function esCero($value) {
     }
 }
 
+
+// CONVIERTE FECHA MYSQLDATETIME A HTML5
+function fechaMySQLADateHTML5($fecha) {
+
+    return date("Y-m-d", strtotime($fecha));
+}
+
 //FECHA SQL PARA GUARDAR EN BASE DE DATOS
 
 function fechaSQL($fecha) {
@@ -45,6 +52,18 @@ function agregarMinutos($fecha, $minutos) {
      * 
      */
 }
+
+function fechaHoraActualSQL($fecha) {
+
+    return date("Y-m-d h:i:s ", strtotime($fecha));
+}
+
+
+function fechaHoraActualSQLFinal($fecha) {
+
+    return date("Y-m-d  ", strtotime($fecha))."23:59:59";
+}
+
 
 //CONVIERTE LA FECHA EN PERIODO
 function fechaPeriodo($fecha) {
@@ -110,6 +129,43 @@ function mes($fecha) {
 function año($fecha) {
 
     return date("Y", strtotime($fecha));
+}
+
+/**
+ * Fecha Humanizada
+ * @param type $fecha
+ * @return type
+ */
+function fechaHumanizada($fecha) {
+    
+    $dias["Monday"] = "Lunes";
+    $dias["Tuesday"] = "Martes";
+    $dias["Wednesday"] = "Miercoles";
+    $dias["Thursday"] = "Jueves";
+    $dias["Friday"] = "Viernes";
+    $dias["Saturday"] = "Sabado";
+    $dias["Sunday"] = "Domingo";
+    
+    $meses["January"] = "Enero";
+    $meses["February"] = "Febrero ";
+    $meses["March"] = "Marzo";
+    $meses["April"] = "Abril";
+    $meses["May"] = "Mayo";
+    $meses["June"] = "Junio";
+    $meses["July"] = "Julio";
+    $meses["August"] = "Agosto";
+    $meses["September"] = "Septiembre";
+    $meses["October"] = "Octubre";
+    $meses["November"] = "Noviembre";
+    $meses["December"] = "Diciembre";
+    
+    $fechaHumanizada = $dias[date("l", strtotime($fecha))] 
+                        .", "
+                        .date("d", strtotime($fecha))." de "
+                        . $meses[date("F", strtotime($fecha))] . " de "
+                        .date("Y", strtotime($fecha));
+                            
+    return  $fechaHumanizada;
 }
 
 //GENERA UUID

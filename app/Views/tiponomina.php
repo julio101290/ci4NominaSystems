@@ -8,70 +8,72 @@
 <?= $this->section('content') ?>
 
 <?= $this->include('modulesTiponomina/modalCaptureTiponomina') ?>
+<?= $this->include('modulesTiponomina/usuariosTipoNominaModal') ?>
+
 
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">
- <div class="card-header">
-     <div class="float-right">
-         <div class="btn-group">
+    <div class="card-header">
+        <div class="float-right">
+            <div class="btn-group">
 
-             <button class="btn btn-primary btnAddTiponomina" data-toggle="modal" data-target="#modalAddTiponomina"><i class="fa fa-plus"></i>
+                <button class="btn btn-primary btnAddTiponomina" data-toggle="modal" data-target="#modalAddTiponomina"><i class="fa fa-plus"></i>
 
-                 <?= lang('tiponomina.add') ?>
+                    <?= lang('tiponomina.add') ?>
 
-             </button>
+                </button>
 
-         </div>
-     </div>
- </div>
- <div class="card-body">
-     <div class="row">
-         <div class="col-md-12">
-             <div class="table-responsive">
-                 <table id="tableTiponomina" class="table table-striped table-hover va-middle tableTiponomina">
-                     <thead>
-                         <tr>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table id="tableTiponomina" class="table table-striped table-hover va-middle tableTiponomina">
+                        <thead>
+                            <tr>
 
-                             <th>#</th>
-                             <th><?= lang('tiponomina.fields.codigo') ?></th>
-<th><?= lang('tiponomina.fields.nombre') ?></th>
-<th><?= lang('tiponomina.fields.direccion') ?></th>
-<th><?= lang('tiponomina.fields.colonia') ?></th>
-<th><?= lang('tiponomina.fields.ciudad') ?></th>
-<th><?= lang('tiponomina.fields.idEmpresa') ?></th>
-<th><?= lang('tiponomina.fields.idSucursal') ?></th>
-<th><?= lang('tiponomina.fields.porcISN') ?></th>
-<th><?= lang('tiponomina.fields.entidadFederativa') ?></th>
-<th><?= lang('tiponomina.fields.cxcNom') ?></th>
-<th><?= lang('tiponomina.fields.cxpISN') ?></th>
-<th><?= lang('tiponomina.fields.cxcInfonavit') ?></th>
-<th><?= lang('tiponomina.fields.cxcIMSS') ?></th>
-<th><?= lang('tiponomina.fields.cxcFonacot') ?></th>
-<th><?= lang('tiponomina.fields.diasPeriodoNomina') ?></th>
-<th><?= lang('tiponomina.fields.maxDias') ?></th>
-<th><?= lang('tiponomina.fields.codigoPostal') ?></th>
-<th><?= lang('tiponomina.fields.riesgoPto') ?></th>
-<th><?= lang('tiponomina.fields.areaSalMin') ?></th>
-<th><?= lang('tiponomina.fields.ejecutivo') ?></th>
-<th><?= lang('tiponomina.fields.ctaNom') ?></th>
-<th><?= lang('tiponomina.fields.NRP') ?></th>
-<th><?= lang('tiponomina.fields.porcRiesgoTrabajo') ?></th>
-<th><?= lang('tiponomina.fields.numSucBancaria') ?></th>
-<th><?= lang('tiponomina.fields.created_at') ?></th>
-<th><?= lang('tiponomina.fields.updated_at') ?></th>
-<th><?= lang('tiponomina.fields.deleted_at') ?></th>
+                                <th>#</th>
+                                <th><?= lang('tiponomina.fields.codigo') ?></th>
+                                <th><?= lang('tiponomina.fields.nombre') ?></th>
+                                <th><?= lang('tiponomina.fields.direccion') ?></th>
+                                <th><?= lang('tiponomina.fields.colonia') ?></th>
+                                <th><?= lang('tiponomina.fields.ciudad') ?></th>
+                                <th><?= lang('tiponomina.fields.idEmpresa') ?></th>
+                                <th><?= lang('tiponomina.fields.idSucursal') ?></th>
+                                <th><?= lang('tiponomina.fields.porcISN') ?></th>
+                                <th><?= lang('tiponomina.fields.entidadFederativa') ?></th>
+                                <th><?= lang('tiponomina.fields.cxcNom') ?></th>
+                                <th><?= lang('tiponomina.fields.cxpISN') ?></th>
+                                <th><?= lang('tiponomina.fields.cxcInfonavit') ?></th>
+                                <th><?= lang('tiponomina.fields.cxcIMSS') ?></th>
+                                <th><?= lang('tiponomina.fields.cxcFonacot') ?></th>
+                                <th><?= lang('tiponomina.fields.diasPeriodoNomina') ?></th>
+                                <th><?= lang('tiponomina.fields.maxDias') ?></th>
+                                <th><?= lang('tiponomina.fields.codigoPostal') ?></th>
+                                <th><?= lang('tiponomina.fields.riesgoPto') ?></th>
+                                <th><?= lang('tiponomina.fields.areaSalMin') ?></th>
+                                <th><?= lang('tiponomina.fields.ejecutivo') ?></th>
+                                <th><?= lang('tiponomina.fields.ctaNom') ?></th>
+                                <th><?= lang('tiponomina.fields.NRP') ?></th>
+                                <th><?= lang('tiponomina.fields.porcRiesgoTrabajo') ?></th>
+                                <th><?= lang('tiponomina.fields.numSucBancaria') ?></th>
+                                <th><?= lang('tiponomina.fields.created_at') ?></th>
+                                <th><?= lang('tiponomina.fields.updated_at') ?></th>
+                                <th><?= lang('tiponomina.fields.deleted_at') ?></th>
 
-                             <th><?= lang('tiponomina.fields.actions') ?> </th>
+                                <th><?= lang('tiponomina.fields.actions') ?> </th>
 
-                         </tr>
-                     </thead>
-                     <tbody>
-                     </tbody>
-                 </table>
-             </div>
-         </div>
-     </div>
- </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.card -->
 
@@ -81,387 +83,417 @@
 <?= $this->section('js') ?>
 <script>
 
- /**
-  * Cargamos la tabla
-  */
+    /**
+     * Cargamos la tabla
+     */
 
- var tableTiponomina = $('#tableTiponomina').DataTable({
-     processing: true,
-     serverSide: true,
-     responsive: true,
-     autoWidth: false,
-     order: [[1, 'asc']],
+    var tableTiponomina = $('#tableTiponomina').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        autoWidth: false,
+        order: [[1, 'asc']],
 
-     ajax: {
-         url: '<?= base_url(route_to('admin/tiponomina')) ?>',
-         method: 'GET',
-         dataType: "json"
-     },
-     columnDefs: [{
-             orderable: false,
-             targets: [28],
-             searchable: false,
-             targets: [28]
+        ajax: {
+            url: '<?= base_url(route_to('admin/tiponomina')) ?>',
+            method: 'GET',
+            dataType: "json"
+        },
+        columnDefs: [{
+                orderable: false,
+                targets: [28],
+                searchable: false,
+                targets: [28]
 
-         }],
-     columns: [{
-             'data': 'id'
-         },
-        
-          
-{
-    'data': 'codigo'
-},
+            }],
+        columns: [{
+                'data': 'id'
+            },
 
- 
-{
-    'data': 'nombre'
-},
+            {
+                'data': 'codigo'
+            },
 
- 
-{
-    'data': 'direccion'
-},
+            {
+                'data': 'nombre'
+            },
 
- 
-{
-    'data': 'colonia'
-},
+            {
+                'data': 'direccion'
+            },
 
- 
-{
-    'data': 'ciudad'
-},
+            {
+                'data': 'colonia'
+            },
 
- 
-{
-    'data': 'idEmpresa'
-},
+            {
+                'data': 'ciudad'
+            },
 
- 
-{
-    'data': 'idSucursal'
-},
+            {
+                'data': 'idEmpresa'
+            },
 
- 
-{
-    'data': 'porcISN'
-},
+            {
+                'data': 'idSucursal'
+            },
 
- 
-{
-    'data': 'entidadFederativa'
-},
+            {
+                'data': 'porcISN'
+            },
 
- 
-{
-    'data': 'cxcNom'
-},
+            {
+                'data': 'entidadFederativa'
+            },
 
- 
-{
-    'data': 'cxpISN'
-},
+            {
+                'data': 'cxcNom'
+            },
 
- 
-{
-    'data': 'cxcInfonavit'
-},
+            {
+                'data': 'cxpISN'
+            },
 
- 
-{
-    'data': 'cxcIMSS'
-},
+            {
+                'data': 'cxcInfonavit'
+            },
 
- 
-{
-    'data': 'cxcFonacot'
-},
+            {
+                'data': 'cxcIMSS'
+            },
 
- 
-{
-    'data': 'diasPeriodoNomina'
-},
+            {
+                'data': 'cxcFonacot'
+            },
 
- 
-{
-    'data': 'maxDias'
-},
+            {
+                'data': 'diasPeriodoNomina'
+            },
 
- 
-{
-    'data': 'codigoPostal'
-},
+            {
+                'data': 'maxDias'
+            },
 
- 
-{
-    'data': 'riesgoPto'
-},
+            {
+                'data': 'codigoPostal'
+            },
 
- 
-{
-    'data': 'areaSalMin'
-},
+            {
+                'data': 'riesgoPto'
+            },
 
- 
-{
-    'data': 'ejecutivo'
-},
+            {
+                'data': 'areaSalMin'
+            },
 
- 
-{
-    'data': 'ctaNom'
-},
+            {
+                'data': 'ejecutivo'
+            },
 
- 
-{
-    'data': 'NRP'
-},
+            {
+                'data': 'ctaNom'
+            },
 
- 
-{
-    'data': 'porcRiesgoTrabajo'
-},
+            {
+                'data': 'NRP'
+            },
 
- 
-{
-    'data': 'numSucBancaria'
-},
+            {
+                'data': 'porcRiesgoTrabajo'
+            },
 
- 
-{
-    'data': 'created_at'
-},
+            {
+                'data': 'numSucBancaria'
+            },
 
- 
-{
-    'data': 'updated_at'
-},
+            {
+                'data': 'created_at'
+            },
 
- 
-{
-    'data': 'deleted_at'
-},
+            {
+                'data': 'updated_at'
+            },
 
+            {
+                'data': 'deleted_at'
+            },
 
-         {
-             "data": function (data) {
-                 return `<td class="text-right py-0 align-middle">
+            {
+                "data": function (data) {
+                    return `<td class="text-right py-0 align-middle">
                          <div class="btn-group btn-group-sm">
                              <button class="btn btn-warning btnEditTiponomina" data-toggle="modal" idTiponomina="${data.id}" data-target="#modalAddTiponomina">  <i class=" fa fa-edit"></i></button>
                              <button class="btn btn-danger btn-delete" data-id="${data.id}"><i class="fas fa-trash"></i></button>
+                             <button class="btn btn-success btn-users" data-id="${data.id}" data-toggle="modal" data-target="#modalUsuariosPorTipoNomina"><i class="fas fa-users"></i></button>
                          </div>
                          </td>`
-             }
-         }
-     ]
- });
+                }
+            }
+        ]
+    });
 
 
 
- $(document).on('click', '#btnSaveTiponomina', function (e) {
-
-     
-var idTiponomina = $("#idTiponomina").val();
-var codigo = $("#codigo").val();
-var nombre = $("#nombre").val();
-var direccion = $("#direccion").val();
-var colonia = $("#colonia").val();
-var ciudad = $("#ciudad").val();
-var idEmpresa = $("#idEmpresa").val();
-var idSucursal = $("#idSucursal").val();
-var porcISN = $("#porcISN").val();
-var entidadFederativa = $("#entidadFederativa").val();
-var cxcNom = $("#cxcNom").val();
-var cxpISN = $("#cxpISN").val();
-var cxcInfonavit = $("#cxcInfonavit").val();
-var cxcIMSS = $("#cxcIMSS").val();
-var cxcFonacot = $("#cxcFonacot").val();
-var diasPeriodoNomina = $("#diasPeriodoNomina").val();
-var maxDias = $("#maxDias").val();
-var codigoPostal = $("#codigoPostal").val();
-var riesgoPto = $("#riesgoPto").val();
-var areaSalMin = $("#areaSalMin").val();
-var ejecutivo = $("#ejecutivo").val();
-var ctaNom = $("#ctaNom").val();
-var NRP = $("#NRP").val();
-var porcRiesgoTrabajo = $("#porcRiesgoTrabajo").val();
-var numSucBancaria = $("#numSucBancaria").val();
-
-     $("#btnSaveTiponomina").attr("disabled", true);
-
-     var datos = new FormData();
-datos.append("idTiponomina", idTiponomina);
-datos.append("codigo", codigo);
-datos.append("nombre", nombre);
-datos.append("direccion", direccion);
-datos.append("colonia", colonia);
-datos.append("ciudad", ciudad);
-datos.append("idEmpresa", idEmpresa);
-datos.append("idSucursal", idSucursal);
-datos.append("porcISN", porcISN);
-datos.append("entidadFederativa", entidadFederativa);
-datos.append("cxcNom", cxcNom);
-datos.append("cxpISN", cxpISN);
-datos.append("cxcInfonavit", cxcInfonavit);
-datos.append("cxcIMSS", cxcIMSS);
-datos.append("cxcFonacot", cxcFonacot);
-datos.append("diasPeriodoNomina", diasPeriodoNomina);
-datos.append("maxDias", maxDias);
-datos.append("codigoPostal", codigoPostal);
-datos.append("riesgoPto", riesgoPto);
-datos.append("areaSalMin", areaSalMin);
-datos.append("ejecutivo", ejecutivo);
-datos.append("ctaNom", ctaNom);
-datos.append("NRP", NRP);
-datos.append("porcRiesgoTrabajo", porcRiesgoTrabajo);
-datos.append("numSucBancaria", numSucBancaria);
+    $(document).on('click', '#btnSaveTiponomina', function (e) {
 
 
-     $.ajax({
-
-         url: "<?= route_to('admin/tiponomina/save') ?>",
-         method: "POST",
-         data: datos,
-         cache: false,
-         contentType: false,
-         processData: false,
-         success: function (respuesta) {
-             if (respuesta.match(/Correctamente.*/)) {
-        
-                 Toast.fire({
-                     icon: 'success',
-                     title: "Guardado Correctamente"
-                 });
-
-                 tableTiponomina.ajax.reload();
-                 $("#btnSaveTiponomina").removeAttr("disabled");
-
-
-                 $('#modalAddTiponomina').modal('hide');
-             } else {
-
-                 Toast.fire({
-                     icon: 'error',
-                     title: respuesta
-                 });
-
-                 $("#btnSaveTiponomina").removeAttr("disabled");
-                
-
-             }
-
-         }
-
-     }
-
-     )
-
- });
+        var idTiponomina = $("#idTiponomina").val();
+        var codigo = $("#codigo").val();
+        var nombre = $("#nombre").val();
+        var direccion = $("#direccion").val();
+        var colonia = $("#colonia").val();
+        var ciudad = $("#ciudad").val();
+        var idEmpresa = $("#idEmpresa").val();
+        var idSucursal = $("#idSucursal").val();
+        var porcISN = $("#porcISN").val();
+        var entidadFederativa = $("#entidadFederativa").val();
+        var cxcNom = $("#cxcNom").val();
+        var cxpISN = $("#cxpISN").val();
+        var cxcInfonavit = $("#cxcInfonavit").val();
+        var cxcIMSS = $("#cxcIMSS").val();
+        var cxcFonacot = $("#cxcFonacot").val();
+        var diasPeriodoNomina = $("#diasPeriodoNomina").val();
+        var maxDias = $("#maxDias").val();
+        var codigoPostal = $("#codigoPostal").val();
+        var riesgoPto = $("#riesgoPto").val();
+        var areaSalMin = $("#areaSalMin").val();
+        var ejecutivo = $("#ejecutivo").val();
+        var ctaNom = $("#ctaNom").val();
+        var NRP = $("#NRP").val();
+        var porcRiesgoTrabajo = $("#porcRiesgoTrabajo").val();
+        var numSucBancaria = $("#numSucBancaria").val();
 
 
 
- /**
-  * Carga datos actualizar
-  */
+
+        $("#btnSaveTiponomina").attr("disabled", true);
+
+        var datos = new FormData();
+        datos.append("idTiponomina", idTiponomina);
+        datos.append("codigo", codigo);
+        datos.append("nombre", nombre);
+        datos.append("direccion", direccion);
+        datos.append("colonia", colonia);
+        datos.append("ciudad", ciudad);
+        datos.append("idEmpresa", idEmpresa);
+        datos.append("idSucursal", idSucursal);
+        datos.append("porcISN", porcISN);
+        datos.append("entidadFederativa", entidadFederativa);
+        datos.append("cxcNom", cxcNom);
+        datos.append("cxpISN", cxpISN);
+        datos.append("cxcInfonavit", cxcInfonavit);
+        datos.append("cxcIMSS", cxcIMSS);
+        datos.append("cxcFonacot", cxcFonacot);
+        datos.append("diasPeriodoNomina", diasPeriodoNomina);
+        datos.append("maxDias", maxDias);
+        datos.append("codigoPostal", codigoPostal);
+        datos.append("riesgoPto", riesgoPto);
+        datos.append("areaSalMin", areaSalMin);
+        datos.append("ejecutivo", ejecutivo);
+        datos.append("ctaNom", ctaNom);
+        datos.append("NRP", NRP);
+        datos.append("porcRiesgoTrabajo", porcRiesgoTrabajo);
+        datos.append("numSucBancaria", numSucBancaria);
 
 
- /*=============================================
-  EDITAR Tiponomina
-  =============================================*/
- $(".tableTiponomina").on("click", ".btnEditTiponomina", function () {
+        $.ajax({
 
-     var idTiponomina = $(this).attr("idTiponomina");
-        
-     var datos = new FormData();
-     datos.append("idTiponomina", idTiponomina);
+            url: "<?= route_to('admin/tiponomina/save') ?>",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                if (respuesta.match(/Correctamente.*/)) {
 
-     $.ajax({
+                    Toast.fire({
+                        icon: 'success',
+                        title: "Guardado Correctamente"
+                    });
 
-         url: "<?= base_url(route_to('admin/tiponomina/getTiponomina')) ?>",
-         method: "POST",
-         data: datos,
-         cache: false,
-         contentType: false,
-         processData: false,
-         dataType: "json",
-         success: function (respuesta) {
-             $("#idTiponomina").val(respuesta["id"]);
-             
-             $("#codigo").val(respuesta["codigo"]);
-$("#nombre").val(respuesta["nombre"]);
-$("#direccion").val(respuesta["direccion"]);
-$("#colonia").val(respuesta["colonia"]);
-$("#ciudad").val(respuesta["ciudad"]);
-$("#idEmpresa").val(respuesta["idEmpresa"]);
-$("#idSucursal").val(respuesta["idSucursal"]);
-$("#porcISN").val(respuesta["porcISN"]);
-$("#entidadFederativa").val(respuesta["entidadFederativa"]);
-$("#cxcNom").val(respuesta["cxcNom"]);
-$("#cxpISN").val(respuesta["cxpISN"]);
-$("#cxcInfonavit").val(respuesta["cxcInfonavit"]);
-$("#cxcIMSS").val(respuesta["cxcIMSS"]);
-$("#cxcFonacot").val(respuesta["cxcFonacot"]);
-$("#diasPeriodoNomina").val(respuesta["diasPeriodoNomina"]);
-$("#maxDias").val(respuesta["maxDias"]);
-$("#codigoPostal").val(respuesta["codigoPostal"]);
-$("#riesgoPto").val(respuesta["riesgoPto"]);
-$("#areaSalMin").val(respuesta["areaSalMin"]);
-$("#ejecutivo").val(respuesta["ejecutivo"]);
-$("#ctaNom").val(respuesta["ctaNom"]);
-$("#NRP").val(respuesta["NRP"]);
-$("#porcRiesgoTrabajo").val(respuesta["porcRiesgoTrabajo"]);
-$("#numSucBancaria").val(respuesta["numSucBancaria"]);
+                    tableTiponomina.ajax.reload();
+                    $("#btnSaveTiponomina").removeAttr("disabled");
 
 
-         }
+                    $('#modalAddTiponomina').modal('hide');
+                } else {
 
-     })
+                    Toast.fire({
+                        icon: 'error',
+                        title: respuesta
+                    });
 
- })
-
-
- /*=============================================
-  ELIMINAR tiponomina
-  =============================================*/
- $(".tableTiponomina").on("click", ".btn-delete", function () {
-
-     var idTiponomina = $(this).attr("data-id");
-
-     Swal.fire({
-         title: '<?= lang('boilerplate.global.sweet.title') ?>',
-         text: "<?= lang('boilerplate.global.sweet.text') ?>",
-         icon: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: '<?= lang('boilerplate.global.sweet.confirm_delete') ?>'
-     })
-             .then((result) => {
-                 if (result.value) {
-                     $.ajax({
-                         url: `<?= base_url(route_to('admin/tiponomina')) ?>/` + idTiponomina,
-                         method: 'DELETE',
-                     }).done((data, textStatus, jqXHR) => {
-                         Toast.fire({
-                             icon: 'success',
-                             title: jqXHR.statusText,
-                         });
+                    $("#btnSaveTiponomina").removeAttr("disabled");
 
 
-                         tableTiponomina.ajax.reload();
-                     }).fail((error) => {
-                         Toast.fire({
-                             icon: 'error',
-                             title: error.responseJSON.messages.error,
-                         });
-                     })
-                 }
-             })
- })
+                }
+
+            }
+
+        }
+
+        )
+
+    });
 
 
 
+    /**
+     * Carga datos actualizar
+     */
+
+
+    /*=============================================
+     EDITAR Tiponomina
+     =============================================*/
+    $(".tableTiponomina").on("click", ".btnEditTiponomina", function () {
+
+        var idTiponomina = $(this).attr("idTiponomina");
+
+        var datos = new FormData();
+        datos.append("idTiponomina", idTiponomina);
+
+        $.ajax({
+
+            url: "<?= base_url(route_to('admin/tiponomina/getTiponomina')) ?>",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                $("#idTiponomina").val(respuesta["id"]);
+
+                $("#codigo").val(respuesta["codigo"]);
+                $("#nombre").val(respuesta["nombre"]);
+                $("#direccion").val(respuesta["direccion"]);
+                $("#colonia").val(respuesta["colonia"]);
+                $("#ciudad").val(respuesta["ciudad"]);
+                $("#idEmpresa").val(respuesta["idEmpresa"]);
+                $("#idSucursal").val(respuesta["idSucursal"]).trigger("change");
+                $("#porcISN").val(respuesta["porcISN"]);
+                $("#entidadFederativa").val(respuesta["entidadFederativa"]);
+                $("#cxcNom").val(respuesta["cxcNom"]);
+                $("#cxpISN").val(respuesta["cxpISN"]);
+                $("#cxcInfonavit").val(respuesta["cxcInfonavit"]);
+                $("#cxcIMSS").val(respuesta["cxcIMSS"]);
+                $("#cxcFonacot").val(respuesta["cxcFonacot"]);
+                $("#diasPeriodoNomina").val(respuesta["diasPeriodoNomina"]);
+                $("#maxDias").val(respuesta["maxDias"]);
+                $("#codigoPostal").val(respuesta["codigoPostal"]);
+                $("#riesgoPto").val(respuesta["riesgoPto"]).trigger("change");
+                $("#areaSalMin").val(respuesta["areaSalMin"]);
+                $("#ejecutivo").val(respuesta["ejecutivo"]);
+                $("#ctaNom").val(respuesta["ctaNom"]);
+                $("#NRP").val(respuesta["NRP"]);
+                $("#porcRiesgoTrabajo").val(respuesta["porcRiesgoTrabajo"]);
+                $("#numSucBancaria").val(respuesta["numSucBancaria"]);
+
+                var newOption = new Option(respuesta["entidadFederativa"] + ' ' + respuesta["nombreEstado"], respuesta["entidadFederativa"], true, true);
+                $('#estado').append(newOption).trigger('change');
+                $("#estado").val(respuesta["entidadFederativa"]).trigger("change");
+
+
+                var newOption2 = new Option(respuesta["nombreSucursal"], respuesta["idSucursal"], true, true);
+                $('#idSucursal').append(newOption2).trigger('change');
+                $("#idSucursal").val(respuesta["idSucursal"]).trigger("change");
+
+               
+                var newOption3 = new Option(respuesta["areaSalMin"] + ' ' + respuesta["nombreSalario"], respuesta["areaSalMin"], true, true);
+                $('#areaSalMin').append(newOption3).trigger('change');
+                $("#areaSalMin").val(respuesta["areaSalMin"]).trigger("change");
+
+
+
+
+            }
+
+        })
+
+    })
+
+
+    /*=============================================
+     ELIMINAR tiponomina
+     =============================================*/
+    $(".tableTiponomina").on("click", ".btn-delete", function () {
+
+        var idTiponomina = $(this).attr("data-id");
+
+        Swal.fire({
+            title: '<?= lang('boilerplate.global.sweet.title') ?>',
+            text: "<?= lang('boilerplate.global.sweet.text') ?>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<?= lang('boilerplate.global.sweet.confirm_delete') ?>'
+        })
+                .then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: `<?= base_url(route_to('admin/tiponomina')) ?>/` + idTiponomina,
+                            method: 'DELETE',
+                        }).done((data, textStatus, jqXHR) => {
+                            Toast.fire({
+                                icon: 'success',
+                                title: jqXHR.statusText,
+                            });
+
+
+                            tableTiponomina.ajax.reload();
+                        }).fail((error) => {
+                            Toast.fire({
+                                icon: 'error',
+                                title: error.responseJSON.messages.error,
+                            });
+                        })
+                    }
+                })
+    })
+
+
+    $(".idEmpresa").select2();
+
+
+    /**
+     * Categorias por empresa
+     */
+
+    $(".entidadFederativa ").select2({
+        ajax: {
+            url: "<?= base_url('admin/ubicaciones/getEstadosSATAjax') ?>",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+
+            data: function (params) {
+                // CSRF Hash
+                var csrfName = $('.txt_csrfname').attr('name'); // CSRF Token name
+                var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+                var pais = "MEX"; // CSRF hash
+
+                return {
+                    searchTerm: params.term, // search term
+                    [csrfName]: csrfHash, // CSRF Token
+                    pais: pais // search term
+                };
+            },
+            processResults: function (response) {
+
+                // Update CSRF Token
+                $('.txt_csrfname').val(response.token);
+
+                return {
+                    results: response.data
+                };
+            },
+
+            cache: true
+        }
+    });
 
 </script>
 <?= $this->endSection() ?>

@@ -19,29 +19,35 @@ class AutoCrudController extends BaseController {
     }
 
     public function index($table) {
-        
-        /*
+
+       /*
         $this->generateModel($table);
+
         $this->generateController($table);
+
+        
         $this->generateView($table);
+
         $this->generateViewModal($table);
         $this->generateLanguage($table);
+
         $this->generateMigration($table);
-         * 
-         */
+
         $this->generateLanguageES($table);
+        */
+        
+        $this->generateMigration($table);
 
         $tableUpCase = ucfirst($table);
+
         $route = <<<EOF
                  \$routes->resource('$table', [
                                 'filter' => 'permission:$table-permission',
                                 'controller' => '{$table}Controller',
-                                'except' => 'show'
+                            'except' => 'show'
                             ]);
-
                 \$routes->post('$table/save', '{$tableUpCase}Controller::save');
-                \$routes->post('{$table}/get{$tableUpCase}', '{$tableUpCase}Controller::get$tableUpCase');
-
+             \$routes->post('{$table}/get{$tableUpCase}', '{$tableUpCase}Controller::get$tableUpCase');
         EOF;
 
         echo $route;
@@ -64,17 +70,24 @@ class AutoCrudController extends BaseController {
 
         $fields = substr($fields, 0, strlen($fields) - 1);
 
+        $fields2 = "";
+
+        foreach ($query as $field2) {
+            $fields2 .= "a." . $field2 . ",";
+        }
+
+
+        $fields2 = substr($fields2, 0, strlen($fields2) - 1);
+
         $nombreClase = ucfirst($table) . "Model";
+
+        $nombreTabla = ucfirst($table);
 
         $model = <<<EOF
         <?php
-
         namespace App\Models;
-
         use CodeIgniter\Model;
-
         class $nombreClase extends Model{
-
             protected \$table      = '$table';
             protected \$primaryKey = 'id';
             protected \$useAutoIncrement = true;
@@ -84,13 +97,23 @@ class AutoCrudController extends BaseController {
             protected \$useTimestamps = true;
             protected \$createdField  = 'created_at';
             protected \$deletedField  = 'deleted_at';
-
             protected \$validationRules    =  [
-
             ];
             protected \$validationMessages = [];
             protected \$skipValidation     = false;
+        
+        
+        
+            public function mdlGet$nombreTabla(\$idEmpresas){
 
+                \$result = \$this->db->table('$table a, empresas b')
+                         ->select('$fields2 ,b.nombre as nombreEmpresa')
+                         ->where('a.idEmpresa', 'b.id', FALSE)
+                         ->whereIn('a.idEmpresa',\$idEmpresas);
+         
+                 return \$result;
+             }
+        
         }
                 
         EOF;
@@ -125,151 +148,139 @@ class AutoCrudController extends BaseController {
 
         $controller = <<<EOF
         <?php
-
          namespace App\Controllers;
-
          use App\Controllers\BaseController;
          use \App\Models\{$nameClassModel};
          use App\Models\LogModel;
          use CodeIgniter\API\ResponseTrait;
+         use App\Models\EmpresasModel;
 
          class {$tableUpCase}Controller extends BaseController {
-
              use ResponseTrait;
-
              protected \$log;
              protected $$table;
-
              public function __construct() {
                  \$this->$table = new $nameClassModel();
                  \$this->log = new LogModel();
+                 \$this->empresa = new EmpresasModel();
                  helper('menu');
+                 helper('utilerias');
              }
-
              public function index() {
 
 
+
+                helper('auth');
+
+                \$idUser = user()->id;
+                \$titulos["empresas"] = \$this->empresa->mdlEmpresasPorUsuario(\$idUser);
+        
+                if (count(\$titulos["empresas"]) == "0") {
+        
+                    \$empresasID[0] = "0";
+                } else {
+        
+                    \$empresasID = array_column(\$titulos["empresas"], "id");
+                }
+        
+    
+
+
                  if (\$this->request->isAJAX()) {
-
-
-
-
-                     \$datos = \$this->{$table}->select('$fields')->where('deleted_at', null);
-
+                    \$datos = \$this->{$table}->mdlGet$tableUpCase(\$empresasID);
+                     
+                 
                      return \Hermawan\DataTables\DataTable::of(\$datos)->toJson(true);
                  }
-
                  \$titulos["title"] = lang('$table.title');
                  \$titulos["subtitle"] = lang('$table.subtitle');
-
-
                  return view('$table', \$titulos);
              }
-
              /**
               * Read $tableUpCase
               */
              public function get$tableUpCase() {
+                
+                helper('auth');
 
+                \$idUser = user()->id;
+                \$titulos["empresas"] = \$this->empresa->mdlEmpresasPorUsuario(\$idUser);
 
-                 \$id$tableUpCase = \$this->request->getPost("id$tableUpCase");
-                 \$datos$tableUpCase = \$this->{$table}->find(\$id$tableUpCase);
+                if (count(\$titulos["empresas"]) == "0") {
 
+                    \$empresasID[0] = "0";
+                } else {
+
+                    \$empresasID = array_column(\$titulos["empresas"], "id");
+                }
+                
+                
+                \$id$tableUpCase = \$this->request->getPost("id$tableUpCase");
+                 \$datos$tableUpCase = \$this->{$table}->whereIn('idEmpresa',\$empresasID)
+                 ->where("id",\$id$tableUpCase)->first();
                  echo json_encode(\$datos$tableUpCase);
-             }
-
+             
+             
+                }
              /**
               * Save or update $tableUpCase
               */
              public function save() {
-
-
                  helper('auth');
                  \$userName = user()->username;
                  \$idUser = user()->id;
-
                  \$datos = \$this->request->getPost();
-
                  if (\$datos["id$tableUpCase"] == 0) {
-
-
                      try {
-
-
                          if (\$this->{$table}->save(\$datos) === false) {
-
                              \$errores = \$this->{$table}->errors();
-
                              foreach (\$errores as \$field => \$error) {
-
                                  echo \$error . " ";
                              }
-
                              return;
                          }
-
                          \$dateLog["description"] = lang("vehicles.logDescription") . json_encode(\$datos);
                          \$dateLog["user"] = \$userName;
-
                          \$this->log->save(\$dateLog);
-
                          echo "Guardado Correctamente";
                      } catch (\PHPUnit\Framework\Exception \$ex) {
-
-
                          echo "Error al guardar " . \$ex->getMessage();
                      }
                  } else {
-
-
                      if (\$this->{$table}->update(\$datos["id$tableUpCase"], \$datos) == false) {
-
                          \$errores = \$this->{$table}->errors();
                          foreach (\$errores as \$field => \$error) {
-
                              echo \$error . " ";
                          }
-
                          return;
                      } else {
-
                          \$dateLog["description"] = lang("$table.logUpdated") . json_encode(\$datos);
                          \$dateLog["user"] = \$userName;
-
                          \$this->log->save(\$dateLog);
                          echo "Actualizado Correctamente";
-
                          return;
                      }
                  }
-
                  return;
              }
-
              /**
               * Delete $tableUpCase
               * @param type \$id
               * @return type
               */
              public function delete(\$id) {
-
                  \$info$tableUpCase = \$this->{$table}->find(\$id);
                  helper('auth');
                  \$userName = user()->username;
-
                  if (!\$found = \$this->{$table}->delete(\$id)) {
                      return \$this->failNotFound(lang('$table.msg.msg_get_fail'));
                  }
-
-
                  \$this->{$table}->purgeDeleted();
                  \$logData["description"] = lang("{$table}.logDeleted") . json_encode(\$info$tableUpCase);
                  \$logData["user"] = \$userName;
-
                  \$this->log->save(\$logData);
                  return \$this->respondDeleted(\$found, lang('$table.msg_delete'));
              }
-
          }
                 
         EOF;
@@ -305,20 +316,14 @@ class AutoCrudController extends BaseController {
                         {
                             'data': '$field'
                         },
-
                         EOF . PHP_EOL;
-
                 if ($field <> "created_at" && $field <> "updated_at" && $field <> "deleted_at") {
-
                     $variablesGuardar1 .= "var $field = $(\"#$field\").val();" . PHP_EOL;
-
                     $variablesFormData .= "datos.append(\"$field\", $field);" . PHP_EOL;
-
                     $inputsEdit .= "$(\"#$field\").val(respuesta[\"$field\"]);" . PHP_EOL;
                     ;
                 }
             } else {
-
                 $variablesGuardar1 .= <<<EOF
                     
                     var id$tableUpCase = $("#id$tableUpCase").val();
@@ -329,16 +334,9 @@ class AutoCrudController extends BaseController {
                         datos.append("id$tableUpCase", id$tableUpCase);
                         EOF . PHP_EOL;
             }
-
-
-
-
             $contador++;
         }
-
-
         $fields = substr($fields, 0, strlen($fields) - 1);
-
         $nameClassModel = ucfirst($table) . "Model";
         $view = <<<EOF
         <?= \$this->include('julio101290\boilerplate\Views\load\select2') ?>
@@ -409,7 +407,7 @@ class AutoCrudController extends BaseController {
              order: [[1, 'asc']],
 
              ajax: {
-                 url: '<?= base_url(route_to('admin/$table')) ?>',
+                 url: '<?= base_url('admin/$table') ?>',
                  method: 'GET',
                  dataType: "json"
              },
@@ -449,7 +447,7 @@ class AutoCrudController extends BaseController {
 
              $.ajax({
 
-                 url: "<?= route_to('admin/$table/save') ?>",
+                 url: "<?= base_url('admin/$table/save') ?>",
                  method: "POST",
                  data: datos,
                  cache: false,
@@ -484,7 +482,83 @@ class AutoCrudController extends BaseController {
 
              }
 
-             )
+             ).fail(function (jqXHR, textStatus, errorThrown) {
+
+                if (jqXHR.status === 0) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "No hay conexión.!" + jqXHR.responseText
+                    });
+
+                    $("#btnSave$tableUpCase").removeAttr("disabled");
+
+
+                } else if (jqXHR.status == 404) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Requested page not found [404]" + jqXHR.responseText
+                    });
+
+                    $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                } else if (jqXHR.status == 500) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Internal Server Error [500]." + jqXHR.responseText
+                    });
+
+
+                    $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                } else if (textStatus === 'parsererror') {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Requested JSON parse failed." + jqXHR.responseText
+                    });
+
+                   $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                } else if (textStatus === 'timeout') {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Time out error." + jqXHR.responseText
+                    });
+
+                   $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                } else if (textStatus === 'abort') {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Ajax request aborted." + jqXHR.responseText
+                    });
+
+                    $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                } else {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: 'Uncaught Error: ' + jqXHR.responseText
+                    });
+
+
+                    $("#btnSave$tableUpCase").removeAttr("disabled");
+
+                }
+            })
 
          });
 
@@ -507,7 +581,7 @@ class AutoCrudController extends BaseController {
 
              $.ajax({
 
-                 url: "<?= base_url(route_to('admin/$table/get$tableUpCase')) ?>",
+                 url: "<?= base_url('admin/$table/get$tableUpCase')?>",
                  method: "POST",
                  data: datos,
                  cache: false,
@@ -545,7 +619,7 @@ class AutoCrudController extends BaseController {
                      .then((result) => {
                          if (result.value) {
                              $.ajax({
-                                 url: `<?= base_url(route_to('admin/$table')) ?>/` + id$tableUpCase,
+                                 url: `<?= base_url('admin/$table') ?>/` + id$tableUpCase,
                                  method: 'DELETE',
                              }).done((data, textStatus, jqXHR) => {
                                  Toast.fire({
@@ -565,7 +639,10 @@ class AutoCrudController extends BaseController {
                      })
          })
 
-
+         $(function () {
+            $("#modalAdd$tableUpCase").draggable();
+            
+        });
 
 
         </script>
@@ -791,10 +868,6 @@ class AutoCrudController extends BaseController {
             if ($contador > 0) {
 
 
-
-
-
-
                 $campos .= "\${$table}[\"fields\"][\"$field\"] = \"" . ucfirst($field) . "\";" . PHP_EOL;
             }
 
@@ -811,12 +884,10 @@ class AutoCrudController extends BaseController {
 
         $languaje = <<<EOF
          <?php
-
         \${$table}["logDescription"] = "El registro en $table fue guardado con los siguientes datos:";
         \${$table}["logUpdate"] = "El registro en $table fue actualizado con los siguientes datos:";
         \${$table}["logDeleted"] = "El registro en $table fue eliminado con los siguientes datos:";
         \${$table}["msg_delete"] = "El Registro en $table fue eliminado correctamente:";
-
         \${$table}["add"] = "Agregar $tableUpCase";
         \${$table}["edit"] = "Editar $table";
         \${$table}["createEdit"] = "Crear / Editar";
@@ -829,7 +900,6 @@ class AutoCrudController extends BaseController {
         \${$table}["msg"]["msg_delete"] = "Registro eliminado correctamente.";
         \${$table}["msg"]["msg_get"] = "Registro obtenido correctamente.";
         \${$table}["msg"]["msg_get_fail"] = "Registro no encontrado o eliminado.";
-
         return $$table;
                 
         EOF;
@@ -855,25 +925,23 @@ class AutoCrudController extends BaseController {
         foreach ($query as $field) {
 
 
-            
+
             if ($contador > 0) {
 
-                
-                if($field->nullable==1){
-                    
-                    $nullable="true";
-                    
-                }   else{
-                    
-                    $nullable="false";
-                    
-                } 
+
+                if ($field->nullable == 1) {
+
+                    $nullable = "true";
+                } else {
+
+                    $nullable = "false";
+                }
                 if ($field->name <> "created_at" && $field->name <> "updated_at" && $field->name <> "deleted_at") {
                     $campos .= "'{$field->name}'             => ['type' => '{$field->type}', 'constraint' => {$field->max_length}, 'null' => $nullable]," . PHP_EOL;
                 }
             } else {
 
-                    $campos .= "'id'                    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true]," . PHP_EOL;
+                $campos .= "'id'                    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true]," . PHP_EOL;
             }
 
 
@@ -888,11 +956,8 @@ class AutoCrudController extends BaseController {
 
         $migration = <<<EOF
             <?php
-
             namespace App\Database\Migrations;
-
             use CodeIgniter\Database\Migration;
-
             class $tableUpCase extends Migration
             {
             public function up()
@@ -904,17 +969,13 @@ class AutoCrudController extends BaseController {
                 'updated_at'       => ['type' => 'datetime', 'null' => true],
                 'deleted_at'       => ['type' => 'datetime', 'null' => true],
             ]);
-
             \$this->forge->addKey('id', true);
-
             \$this->forge->createTable('$table', true);
             }
-
             public function down(){
                 \$this->forge->dropTable('$table', true);
                 }
             }
-
         EOF;
 
         $path = ROOTPATH . "app/Database/Migrations/";
@@ -927,7 +988,4 @@ class AutoCrudController extends BaseController {
 
         //file_put_contents($path . "2023-02-07-165411_$tableUpCase.php", $viewModal);
     }
-    
-    
-
 }

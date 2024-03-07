@@ -8,6 +8,7 @@
 <?= $this->section('content') ?>
 
 <?= $this->include('modulesBranchoffices/modalCaptureBranchoffices') ?>
+<?= $this->include('modulesBranchoffices/usuariosSucursalModal') ?>
 
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">
@@ -157,7 +158,8 @@
                          <div class="btn-group btn-group-sm">
                              <button class="btn btn-warning btnEditBranchoffices" data-toggle="modal" idBranchoffices="${data.id}" data-target="#modalAddBranchoffices">  <i class=" fa fa-edit"></i></button>
                              <button class="btn btn-danger btn-delete" data-id="${data.id}"><i class="fas fa-trash"></i></button>
-                         </div>
+                             <button class="btn btn-success btn-users" data-id="${data.id}" data-toggle="modal" data-target="#modalUsuariosSucursal"><i class="fas fa-users"></i></button> 
+                        </div>
                          </td>`
                 }
             }

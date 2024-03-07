@@ -173,6 +173,44 @@ $routes->group('admin', function ($routes) {
 
     $routes->post('banks/save', 'BanksController::save');
     $routes->post('banks/getBanks', 'BanksController::getBanks');
+
+    $routes->post('sucursales/getSucursalesAjax', 'BranchofficesController::getSucursalesAjax');
+    $routes->get('sucursales/usuariosPorSucursal/(:any)', 'BranchofficesController::usuariosPorSucursal/$1');
+
+    $routes->post('sucursales/activarDesactivar', 'BranchofficesController::activarDesactivar');
+
+    $routes->post('ubicaciones/getEstadosSATAjax', 'BranchofficesController::getEstadosSAT');
+
+    $routes->resource('riesgoslaborales', [
+        'filter' => 'permission:riesgoslaborales-permission',
+        'controller' => 'riesgoslaboralesController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('riesgoslaborales/save', 'RiesgoslaboralesController::save');
+    $routes->post('riesgoslaborales/getRiesgoslaborales', 'RiesgoslaboralesController::getRiesgoslaborales');
+
+    $routes->resource('salariosminimos', [
+        'filter' => 'permission:salariosminimos-permission',
+        'controller' => 'salariosminimosController',
+        'except' => 'show'
+    ]);
+    $routes->post('salariosminimos/save', 'SalariosminimosController::save');
+    $routes->post('salariosminimos/getSalariosminimos', 'SalariosminimosController::getSalariosminimos');
+
+    $routes->resource('nominas', [
+        'filter' => 'permission:nominas-permission',
+        'controller' => 'nominasController',
+        'except' => 'show'
+    ]);
+
+    $routes->post('nominas/save', 'NominasController::save');
+    $routes->post('nominas/getNominas', 'NominasController::getNominas');
+
+    $routes->get('tiposNomina/usuariosPorTipoNomina/(:any)', 'TiponominaController::usuariosPorTipoNomina/$1');
+    
+    $routes->post('tiposNominasPorUsuario/activarDesactivar', 'Usuarios_tiposnominaController::activarDesactivar');
+    
 });
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {

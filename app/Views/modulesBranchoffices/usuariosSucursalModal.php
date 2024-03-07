@@ -1,9 +1,9 @@
 <!-- Modal Usuarios por tipo nomina -->
-<div class="modal fade" id="modalUsuariosPorTipoNomina" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioTipoNomina" aria-hidden="true">
+<div class="modal fade" id="modalUsuariosSucursal" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioSucursal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal Usuarios Por Tipo nomina</h5>
+                <h5 class="modal-title">Modal Usuarios Por Sucursal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <table id="tabla-usuariosTipoNomina" class="table table-striped table-hover va-middle tabla-usuariosTipoNomina">
+                            <table id="tabla-usuariosSucursal" class="table table-striped table-hover va-middle tabla-usuariosSucursal">
                                 <thead>
                                     <tr>
                                         <th>Usuario</th>
@@ -40,7 +40,7 @@
 
 
 <script>
-    var tablaUsuarios = $('#tabla-usuariosTipoNomina').DataTable({
+    var tablaUsuarios = $('#tabla-usuariosSucursal').DataTable({
         processing: true,
         serverSide: true,
         autoWidth: false,
@@ -49,7 +49,7 @@
         ],
 
         ajax: {
-            url: `<?= base_url('admin/tiposNomina/usuariosPorTipoNomina') ?>/` + "0",
+            url: `<?= base_url('admin/sucursales/usuariosPorSucursal') ?>/` + "0",
             method: 'GET',
             dataType: "json"
 
@@ -72,7 +72,7 @@
 
                         return `<td class="text-right py-0 align-middle">
                          <div class="btn-group btn-group-sm">
-                             <button class="btn btn-success btnActivate" status="on"  idEmpresa="${data.idEmpresa}" idTipoNomina="${data.idTipoNomina}" idUsuario="${data.id}" idTipoNominaUsuario="${data.idTipoNominaUsuario}" idUser="${data.id}">ON</button>
+                             <button class="btn btn-success btnActivate" status="on"  idEmpresa="${data.idEmpresa}" idSucursal="${data.idSucursal}"  idUser="${data.id}" idSucursalUsuario="${data.idSucursalUsuario}">ON</button>
                              
                          </div>
                          </td>`;
@@ -82,7 +82,7 @@
 
                         return `<td class="text-right py-0 align-middle">
                          <div class="btn-group btn-group-sm">
-                             <button class="btn btn-danger btnActivate" status="off" idEmpresa="${data.idEmpresa}"  idTipoNominaUsuario="${data.idTipoNominaUsuario}" idUsuario="${data.id}"  idTipoNomina="${data.idTipoNomina}" >OFF</button>
+                             <button class="btn btn-danger btnActivate" status="off" idEmpresa="${data.idEmpresa}"  idSucursal="${data.idSucursal}"  idUser="${data.id}" idSucursalUsuario="${data.idSucursalUsuario}">OFF</button>
                              
                          </div>
                          </td>`;
@@ -93,19 +93,20 @@
                 }
             }
         ]
-    })
+    });
 
 
-    //CARGA CONSULTAS ANTERIORES
+
     /**
      * Carga datos actualizar
      */
-    $(".tableTiponomina").on("click", ".btn-users", function () {
+    $(".tableBranchoffices").on("click", ".btn-users", function () {
 
-        var empresa = $(this).attr("data-id");
+        var sucursal = $(this).attr("data-id");
 
-      
-        tablaUsuarios.ajax.url(`<?= base_url('admin/tiposNomina/usuariosPorTipoNomina') ?>/` + empresa).load();
+        console.log("sucursal:", sucursal);
+
+        tablaUsuarios.ajax.url(`<?= base_url('admin/sucursales/usuariosPorSucursal') ?>/` + sucursal).load();
 
 
     });
@@ -115,15 +116,16 @@
      * Guarda derecho
      */
 
-    $(".tabla-usuariosTipoNomina").on("click", ".btnActivate", function () {
+    $(".tabla-usuariosSucursal").on("click", ".btnActivate", function () {
 
 
         var statusActual = $(this).attr("status");
-        var idTipoNominaUsuarioUsuario = $(this).attr("idTipoNominaUsuario");
-        var idUsuario = $(this).attr("idUsuario");
+        var idSucursalUsuario = $(this).attr("idSucursalUsuario");
+        var idUsuario = $(this).attr("iduser");
         var idEmpresa = $(this).attr("idEmpresa");
-        var idTipoNomina = $(this).attr("idTipoNomina");
-        
+        var idSucursal = $(this).attr("idSucursal");
+
+
         if (statusActual == "on") {
 
             var status = "off";
@@ -137,15 +139,15 @@
 
         var datos = new FormData();
         datos.append("idUsuario", idUsuario);
-        datos.append("id", idTipoNominaUsuarioUsuario);
-        datos.append("idTipoNomina", idTipoNomina);
+        datos.append("id", idSucursalUsuario);
         datos.append("idEmpresa", idEmpresa);
+        datos.append("idSucursal", idSucursal);
         datos.append("status", status);
 
 
         $.ajax({
 
-            url: "<?= base_url('admin/tiposNominasPorUsuario/activarDesactivar') ?>",
+            url: "<?= base_url('admin/sucursales/activarDesactivar') ?>",
             method: "POST",
             data: datos,
             cache: false,
@@ -154,10 +156,9 @@
             success: function (respuesta) {
 
                 if (respuesta == "ok") {
-                    
-                    
-                    tablaUsuarios.ajax.url(`<?= base_url('admin/tiposNomina/usuariosPorTipoNomina') ?>/` + idTipoNomina).load();
-                  
+
+                    tablaUsuarios.ajax.url(`<?= base_url('admin/sucursales/usuariosPorSucursal') ?>/` + idSucursal).load();
+
 
                 } else {
 
