@@ -12,7 +12,6 @@ use App\Models\RiesgoslaboralesModel;
 use App\Models\BranchofficesModel;
 use App\Models\SalariosminimosModel;
 use App\Models\Usuarios_tiposnominaModel;
-use App\Models\TiponominaModel;
 use CodeIgniter\API\ResponseTrait;
 
 class TiponominaController extends BaseController {

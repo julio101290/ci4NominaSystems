@@ -35,14 +35,14 @@ class TiposcalculosModel extends Model {
 
         $result = $this->db->table('tiposcalculos a, empresas b')
                 ->select('a.id
-                          ,a.idEmpresa,a.nombre
+                          ,a.idEmpresa
+                          ,a.nombre
                           ,a.claveTimbrado
                           ,a.claveCalculo
                           ,a.claveImpresion
                           ,a.claveLiquidacion
                           ,a.satTipoNomina
                           ,a.created_at
-                          ,a.tipoCalculo
                          ,a.updated_at
                          ,a.deleted_at 
                          ,b.nombre as nombreEmpresa')
