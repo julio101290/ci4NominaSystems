@@ -34,10 +34,9 @@ class AutoCrudController extends BaseController {
         $this->generateMigration($table);
 
         $this->generateLanguageES($table);
-        */
-        
-        $this->generateMigration($table);
-
+       
+       */
+    
         $tableUpCase = ucfirst($table);
 
         $route = <<<EOF

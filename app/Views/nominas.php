@@ -229,6 +229,7 @@
         var proveedorISN = $("#proveedorISN").val();
         var porrsg = $("#porrsg").val();
         var UMA = $("#UMA").val();
+        var tipoCalculo = $("#tipoCalculo").val();
 
 
         /*
@@ -278,6 +279,7 @@
         datos.append("proveedorISN", proveedorISN);
         datos.append("porrsg", porrsg);
         datos.append("UMA", UMA);
+        datos.append("tipoCalculo", tipoCalculo);
 
 
         $.ajax({
@@ -445,6 +447,7 @@
                 $("#proveedorISN").val(respuesta["proveedorISN"]);
                 $("#porrsg").val(respuesta["porrsg"]);
                 $("#UMA").val(respuesta["UMA"]);
+                $("#tipoCalculo").val(respuesta["tipoCalculo"]).trigger("change");
 
 
             }

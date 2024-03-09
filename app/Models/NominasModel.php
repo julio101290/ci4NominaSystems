@@ -29,7 +29,9 @@ class NominasModel extends Model {
         , 'diasFestivos'
         , 'ise'
         , 'proveedorISN'
-        , 'porrsg', 'UMA'
+        , 'porrsg'
+        , 'UMA'
+        , 'tipoCalculo'
         , 'created_at'
         , 'updated_at'
         , 'deleted_at'];
@@ -68,6 +70,7 @@ class NominasModel extends Model {
                         ,a.created_at
                         ,a.updated_at
                         ,a.deleted_at 
+                        ,
                         ,b.nombre as nombreEmpresa')
                 ->where('a.idEmpresa', 'b.id', FALSE)
                 ->whereIn('a.idEmpresa', $idEmpresas);

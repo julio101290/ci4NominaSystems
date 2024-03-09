@@ -270,6 +270,41 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="UMA" class="col-sm-2 col-form-label">Tipo Calculo</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                </div>
+
+                                <select class="form-control tipoCalculo form-control" name="tipoCalculo" id="tipoCalculo" style="width:80%;">
+
+
+                                    <option value="0" Selected> Seleccione el tipo de calculo</option>
+                                    <?php
+                                    $contadorTipoCalculo = 0;
+                                    foreach ($tiposCalculo as $key => $value) {
+
+
+                                        if ($contadorTipoCalculo == 0) {
+
+                                            echo "<option  value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                        } else {
+
+                                            echo "<option value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                        }
+                                    }
+
+                                    $contadorTipoCalculo++;
+                                    ?>
+
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
 
                 </form>
             </div>
@@ -297,7 +332,7 @@
 
         $("#idNominas").val("0");
 
-        
+
 
         $("#idEmpresa").val(0).trigger("change");
         $("#idTipoNominas").val(0).trigger("change");
@@ -328,7 +363,7 @@
 
 
 
-
+    $("#tipoCalculo").select2();
 
 </script>
 

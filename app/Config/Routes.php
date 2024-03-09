@@ -208,11 +208,18 @@ $routes->group('admin', function ($routes) {
     $routes->post('nominas/getNominas', 'NominasController::getNominas');
 
     $routes->get('tiposNomina/usuariosPorTipoNomina/(:any)', 'TiponominaController::usuariosPorTipoNomina/$1');
-    
+
     $routes->post('tiposNominasPorUsuario/activarDesactivar', 'Usuarios_tiposnominaController::activarDesactivar');
-    
+
     $routes->post('nominas/obtenerUltimoFolio', 'NominasController::ultimoFolio');
-    
+
+    $routes->resource('tiposcalculos', [
+        'filter' => 'permission:tiposcalculos-permission',
+        'controller' => 'tiposcalculosController',
+        'except' => 'show'
+    ]);
+    $routes->post('tiposcalculos/save', 'TiposcalculosController::save');
+    $routes->post('tiposcalculos/getTiposcalculos', 'TiposcalculosController::getTiposcalculos');
 });
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {

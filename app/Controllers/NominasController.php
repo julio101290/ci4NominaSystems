@@ -10,6 +10,7 @@ use App\Models\LogModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EmpresasModel;
 use App\Models\TiponominaModel;
+use App\Models\TiposcalculosModel;
 
 class NominasController extends BaseController {
 
@@ -18,12 +19,14 @@ class NominasController extends BaseController {
     protected $log;
     protected $nominas;
     protected $tiposNomina;
+    protected $tipoCalculo;
 
     public function __construct() {
         $this->nominas = new NominasModel();
         $this->log = new LogModel();
         $this->empresa = new EmpresasModel();
         $this->tiposNomina = new TiponominaModel();
+        $this->tipoCalculo = new TiposcalculosModel();
 
         helper('menu');
         helper('utilerias');
@@ -59,8 +62,15 @@ class NominasController extends BaseController {
         $tiposNomina = $this->tiposNomina->select("*")
                         ->whereIn("idEmpresa", $empresasID)
                         ->asArray()->findAll();
-
+        
+        
+        $tiposCalculo = $this->tipoCalculo->select("*")
+                        ->wherein("idEmpresa", $empresasID)
+                        ->asArray()->findAll();
+        
         $titulos["tiposNominas"] = $tiposNomina;
+        
+        $titulos["tiposCalculo"] = $tiposCalculo;
 
         $titulos["title"] = lang('nominas.title');
         $titulos["subtitle"] = lang('nominas.subtitle');
@@ -171,7 +181,6 @@ class NominasController extends BaseController {
         } else {
 
             $folio = $ultimoFolio[0]["clave"] + 1;
-            
         }
         echo $folio;
     }

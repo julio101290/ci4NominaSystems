@@ -4,15 +4,16 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CampoNuevosRiesgoTrabajo extends Migration {
+class CampoNuevosNomina extends Migration {
 
     public function up() {
 
         $campos = [
-            'idEmpresa' => ['type' => 'bigint', 'constraint' => 20, 'null' => true],
+            'tipoCalculo' => ['type' => 'bigint', 'constraint' => 20, 'null' => true],
         ];
 
-        $this->forge->addColumn('riesgoslaborales', $campos);
+        $this->forge->addColumn('nominas', $campos);
+        
     }
 
     public function down() {
