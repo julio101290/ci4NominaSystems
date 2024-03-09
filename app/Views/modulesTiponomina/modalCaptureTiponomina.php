@@ -26,17 +26,19 @@
                                 <select class="form-control idEmpresa form-control" name="idEmpresa" id="idEmpresa" style="width:80%;">
 
                                     <?php
-                                    $contadorEmpresas = 0;
-                                    foreach ($empresas as $key => $value) {
+                                    $contadorTiposNomina = 0;
+                                    foreach ($tiposNominas as $key => $value) {
 
 
-                                        if ($contadorEmpresas == 0) {
+                                        if ($contadorTiposNomina == 0) {
 
-                                            echo "<option selected value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                            echo "<option selected value='$value[id]'>$value[codigo] - $value[nombre] </option>  ";
                                         } else {
 
-                                            echo "<option value='$value[id]'>$value[id] - $value[nombre] </option>  ";
+                                            echo "<option value='$value[id]'>$value[codigo] - $value[nombre] </option>  ";
                                         }
+                                        
+                                        $contadorTiposNomina ++;
                                     }
                                     ?>
 
@@ -433,6 +435,8 @@
     $(".idEmpresa").select2();
     $(".riesgoPto").select2();
     
+    
+
 </script>
 
 

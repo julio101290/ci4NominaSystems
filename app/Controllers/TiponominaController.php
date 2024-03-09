@@ -12,6 +12,7 @@ use App\Models\RiesgoslaboralesModel;
 use App\Models\BranchofficesModel;
 use App\Models\SalariosminimosModel;
 use App\Models\Usuarios_tiposnominaModel;
+use App\Models\TiponominaModel;
 use CodeIgniter\API\ResponseTrait;
 
 class TiponominaController extends BaseController {
@@ -25,8 +26,10 @@ class TiponominaController extends BaseController {
     protected $sucursales;
     protected $salariosMinimos;
     protected $usuariosPorTipoNomina;
+    protected $tiposNomina;
 
     public function __construct() {
+
         $this->tiponomina = new TiponominaModel();
         $this->log = new LogModel();
         $this->empresa = new EmpresasModel();
@@ -34,6 +37,8 @@ class TiponominaController extends BaseController {
         $this->sucursales = new BranchofficesModel();
         $this->salariosMinimos = new SalariosminimosModel();
         $this->usuariosPorTipoNomina = new Usuarios_tiposnominaModel();
+        $this->tiposNomina = new TiponominaModel();
+
         helper('menu');
     }
 
@@ -66,6 +71,8 @@ class TiponominaController extends BaseController {
                         ->asArray()->findAll();
 
         $titulos["salariosMinimos"] = $salariosMinimos;
+
+
 
         if ($this->request->isAJAX()) {
 

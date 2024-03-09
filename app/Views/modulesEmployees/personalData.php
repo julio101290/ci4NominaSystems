@@ -108,7 +108,7 @@
 
                 <option value="0"><?= lang('employees.fields.sexFermale') ?></option>
                 <option value="1"><?= lang('employees.fields.sexMale') ?></option>
-                
+
 
             </select>
 

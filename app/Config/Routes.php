@@ -211,6 +211,8 @@ $routes->group('admin', function ($routes) {
     
     $routes->post('tiposNominasPorUsuario/activarDesactivar', 'Usuarios_tiposnominaController::activarDesactivar');
     
+    $routes->post('nominas/obtenerUltimoFolio', 'NominasController::ultimoFolio');
+    
 });
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
