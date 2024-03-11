@@ -6,7 +6,7 @@ $nominas["msg_delete"] = "El Registro en nominas fue eliminado correctamente:";
 $nominas["add"] = "Agregar Nominas";
 $nominas["edit"] = "Editar nominas";
 $nominas["createEdit"] = "Crear / Editar";
-$nominas["title"] = "Admon. nominas";
+$nominas["title"] = "Apertura y cerrado de nominas";
 $nominas["subtitle"] = "Lista nominas";
 $nominas["fields"]["idEmpresa"] = "Empresa";
 

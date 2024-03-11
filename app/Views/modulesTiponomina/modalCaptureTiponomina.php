@@ -26,19 +26,19 @@
                                 <select class="form-control idEmpresa form-control" name="idEmpresa" id="idEmpresa" style="width:80%;">
 
                                     <?php
-                                    $contadorTiposNomina = 0;
-                                    foreach ($tiposNominas as $key => $value) {
+                                    $contadorEmpresas = 0;
+                                    foreach ($empresas as $key => $value) {
 
 
-                                        if ($contadorTiposNomina == 0) {
+                                        if ($contadorEmpresas == 0) {
 
-                                            echo "<option selected value='$value[id]'>$value[codigo] - $value[nombre] </option>  ";
+                                            echo "<option selected value='$value[id]'>$value[id] - $value[nombre] </option>  ";
                                         } else {
 
-                                            echo "<option value='$value[id]'>$value[codigo] - $value[nombre] </option>  ";
+                                            echo "<option value='$value[id]'>$value[id] - $value[nombre] </option>  ";
                                         }
                                         
-                                        $contadorTiposNomina ++;
+                                        $contadorEmpresas ++;
                                     }
                                     ?>
 
